@@ -1,0 +1,71 @@
+
+<div class="filters bg-light border-bottom">
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-light pr-0 pl-0 pt-4 pb-3">
+            <a class="navbar-brand d-block d-md-none" href="#">Filtros</a>
+            <button class="navbar-toggler border-0 pr-0 pl-0 text-dark filters_btn" type="button" data-toggle="collapse" data-target="#filtersToggle" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                  </svg>
+            </button>
+            <div class="collapse navbar-collapse" id="filtersToggle">
+        <div class="container pt-5 pb-5">
+            <div class="row">
+                <%if( all_brands) { %>
+                <form action="/product/filters" method="GET" class="w-100 d-flex flex-wrap">
+                    <div class="col-12 col-md-3 mt-4 p-0 pr-0 pr-md-3 mt-md-0">
+                        <select class="form-control" id="brand_filter" name="brand">
+                            <option value="no_brand" disabled selected>Seleccione una marca</option>
+                                <% for(i=0; i<all_brands.length; i++){ %>
+                                    <option value=<%= all_brands[i] %>><%= all_brands[i] %></option>
+                                <% } %>    
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 pr-0 pr-md-3 p-0 mt-4 mt-md-0">
+                        <select class="form-control" id="model_filter" name="model" disabled>
+                            <!-- <option value="no_model" disabled selected>Seleccione un modelo</option> -->
+                          </select>
+                    </div>
+                    <div class="col-12 p-0  pr-0 pr-md-3 col-md-3 mt-4 mt-md-0">
+                        <select class="form-control" id="initialPrice_filter" name="initialPrice">
+                            <option disabled selected>Precio desde</option>
+                            <option>chevrolet</option>
+                          </select>
+                    </div>
+                    <div class="col-12 p-0  pr-0 col-md-3 mt-4 mt-md-0">
+                        <select class="form-control" id="finalPrice_filter" name="finalPrice">
+                            <option disabled selected>precio hasta</option>
+                            <option>chevrolet</option>
+                          </select>
+                    </div>
+                    <div class="col-12 p-0 pr-0 pr-md-3 col-md-3 mt-4">
+                        <select class="form-control" id="AutoManual_filter" name="AutoManual" disabled>
+                            <option disabled selected>Transmisión</option>
+                          </select>
+                    </div>
+                    <div class="col-12 p-0 pr-0 pr-md-3 col-md-3 mt-4">
+                        <select class="form-control" id="initialKm_filter" name="initialKm">
+                            <option disabled selected>Kilometrage desde</option>
+                            <option>chevrolet</option>
+                          </select>
+                    </div>
+                    <div class="col-12 p-0 pr-0 pr-md-3 col-md-3 mt-4">
+                        <select class="form-control finalKm" name="finalKm" id="finalKm_filter">
+                            <option disabled selected>Kilometrage hasta</option>
+                            <option>chevrolet</option>
+                          </select>
+                    </div>
+                    <div class="col-12 p-0 col-md-3 mt-4">
+                        <select class="form-control" name="color" id="filter">
+                            <option disabled selected>Color</option>
+                            <option>chevrolet</option>
+                          </select>
+                    </div>
+                    <button class="btn btn-primary">Enviar</button>
+                </form>
+               <% } %>    
+            </div>
+        </div>
+    </nav>
+    </div>
+</div>

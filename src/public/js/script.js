@@ -1,0 +1,288 @@
+const headers = document.getElementsByTagName("header");
+const jumbo_promotion = document.getElementById("jumbo_promotion");
+const carousel_items = document.getElementsByClassName("car_carousel_item");
+const new_page = document.getElementsByClassName("new_page");
+var  model_select = document.getElementById("model_select");
+const empty = document.getElementById("empty");
+//mobile filters div
+const filters = document.getElementsByClassName("filters");
+const filters_btn = document.getElementsByClassName("filters_btn");
+
+//filtros
+const brand_filter = document.getElementById("brand_filter");
+const model_filter = document.getElementById("model_filter");
+const initialPrice_filter = document.getElementById("initialPrice_filter");
+const AutoManual_filter = document.getElementById("AutoManual_filter");
+
+//Actualizar productos
+const update_product_information = document.getElementById("update_product_information");
+const delete_image = document.getElementsByClassName('delete_image');
+const existing_img_container = document.getElementsByClassName('existing_img_container');
+const product_id = document.getElementById('product_id');
+const update_info = document.getElementById('update_info');
+
+
+
+
+
+// .style.transform = "rotate(7deg)";
+if(filters_btn){
+    for(i=0; i<filters_btn.length; i++){
+        filters_btn[i].addEventListener("click", function(){
+            this.style.transition = ".5s";
+            this.classList.toggle("rotateArrow");
+        });
+    }
+}
+
+
+if(carousel_items.length > 0){
+    carousel_items[0].classList.add("active");
+}
+
+var headerHeight = headers[0].clientHeight;
+
+
+if(headers.length>0){
+    if(jumbo_promotion){
+        jumbo_promotion.style.marginTop = `${headerHeight}px`;
+        jumbo_promotion.style.minHeight = `calc(100vh - ${headerHeight}px)`;
+    }
+}
+
+if(new_page[0]){
+    new_page[0].style.marginTop = `${headerHeight*2}px`;
+}
+
+
+if(new_page)
+{     for(i=0; i<new_page.length; i++){
+         new_page[i].style.marginTop = `${headerHeight *2 }px`;
+     }
+ }
+
+
+
+ console.log(headerHeight );
+ if(filters){
+    for(i=0; i<filters.length; i++){
+        filters[i].style.marginTop =  `${headerHeight}px`;
+    }
+ }
+
+
+
+///aJAX
+
+
+const brand = document.getElementById("brand");
+var searching_btn = document.getElementById("searching_btn");
+
+
+window.onload = function() {
+    imprimirValor();
+    models_number();
+  }
+
+
+//visitamos la ruta '/model/' + single_brand a la que le enviamos el parametro single_brand, con la marca del carro
+//traemos los modelos del mismo de manera asincrona
+  function imprimirValor(){
+    if(brand){
+        brand.addEventListener("change", function(){
+            const single_brand = brand.value;
+            if(single_brand !== "empty"){
+                searching_btn.innerHTML = `<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>`;
+                setTimeout(()=>{
+                    $.post('/model/' + single_brand)
+                    .done(data => {
+                        console.log(data);
+                        let results_number = data.length;
+                        if(results_number == 1){
+                            searching_btn.innerHTML = `${results_number} resultado`;
+                        }else{
+                            searching_btn.innerHTML = `${results_number} resultados`;
+                        }
+                            let option_default = document.createElement("option");
+                            option_default.setAttribute("disabled", "");
+                            option_default.setAttribute("selected", "selected")
+                            option_default.innerHTML = "Seleccione un modelo";
+                            model_select.appendChild(option_default);
+
+                        for(i=0; i<data.length; i++){
+                            model_select.removeAttribute("disabled");
+                            let option = document.createElement("option");
+                            option.setAttribute("name", `${data[i]}`);
+                            option.innerHTML = `${data[i]}`;
+                            model_select.appendChild(option);
+                        }
+                    });
+                },500);
+                model_select.innerHTML = "";
+            }else{
+                model_select.setAttribute("disabled", true);
+                model_select.value = "Seleccione un modelo";
+                searching_btn.innerHTML = ` <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"></path>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"></path>
+              </svg>Buscar`;
+            }
+        });
+
+    }
+
+  }
+
+
+//visitamos la ruta model/quatity/+selected_model  selected model lleva el nombre del modelo del carro, hacemos
+//la consulta y traemos la cantidad de autos con eso nombre
+
+function models_number(){
+    if(model_select){
+        model_select.addEventListener("change", function(){
+            const selected_model = model_select.value;
+            searching_btn.innerHTML = `<div class="spinner-border spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>`;
+            setTimeout(() => {
+                $.post('/model/quantity/' + selected_model)
+                .done(data => {
+                    if(data.car_model_quantity == 1){
+                        searching_btn.innerHTML =  `${data.car_model_quantity} Resutado`;
+                    }else{
+                        searching_btn.innerHTML = `${data.car_model_quantity} Resutados`;
+                    }
+                });
+            },500);
+        });
+    }
+}
+
+
+var car_info = [];
+
+if(brand_filter){
+    brand_filter.addEventListener("change", function(){
+        //cuando cambie la marca del filter borre el modelo que esta en car_info[1]
+        //limpie os options dentro del filtro model
+        //car_info[1] = undefined;
+        model_filter.innerHTML = "";
+        var brand = brand_filter.value;
+        if(brand){
+            car_info[0] = brand;
+            ajax_consult(car_info);
+        }
+    });
+}
+
+
+if(model_filter){
+    model_filter.addEventListener("change", function(){
+        var model = model_filter.value;
+        if(model){
+            car_info[1] = model;
+            ajax_consult(car_info);
+        }
+    });
+    model_filter.innerHTML = "";
+const ajax_consult = (car_info) => {
+    var brand = car_info[0];
+    var model = car_info[1];
+    $.get('/product/filters/'+ brand + "/" + model)
+    .done(data =>{
+
+        console.log(data);
+        
+        // model_filter_option_disabled = document.createElement("option");
+        // model_filter_option_disabled.setAttribute("disabled", "");
+        // model_filter_option_disabled.setAttribute("selected", "");
+        // model_filter_option_disabled.innerHTML = "Seleccione un modelo"; 
+        // model_filter.appendChild(model_filter_option_disabled);
+        all_models = [];
+        if(data.length > 0){
+            for(i of data){
+                /*==========================================
+                Eliminando los modelos repetidos
+                ===========================================*/
+                all_models.push(i.model);
+                var d = new Set(all_models);
+                var result = [...d];
+                console.log(result);
+               //creando opciones para los modelos
+                model_filter.removeAttribute("disabled");
+                model_filter_option = document.createElement("option");
+                model_filter_option.setAttribute("value", i.model);
+                model_filter_option.innerHTML = i.model;
+                model_filter.appendChild(model_filter_option);
+            }
+        }
+    });
+}
+ajax_consult();
+}
+
+
+
+
+//Editar productos
+
+//cuando se haga click en la x de alguna de las imagenes que se trajeron (no de las nuevas que estoy subiendo)
+//enviará os ids de as imagenes a las que le dio click en la x para enviarlas y asi eliminarlas del modelo
+
+if(delete_image){
+    function delete_images(){
+        for(i=0; i<delete_image.length; i++){
+            delete_image[i].addEventListener("click", function(){
+                this.style.display = "none";
+                this.nextElementSibling.style.display = "none";  
+                let picture_id = this.nextElementSibling.nextElementSibling.value;
+                const new_imput = document.createElement("input");
+                new_imput.setAttribute("type", "hidden");
+                new_imput.setAttribute("name", "picture_id");
+                new_imput.setAttribute("value", picture_id);
+                update_product_information.appendChild(new_imput);
+            });
+        }
+    }
+
+    delete_images();
+}
+
+
+
+
+
+function delete_images_ajax(){
+    const id = product_id.value;
+}
+
+
+
+
+
+
+
+
+//==> trayendo la marca cuando cambie select
+
+
+
+
+// 1. cuando cambie el select envie el valor a cada una de las variables, sobreescriba el valor si hace cambios
+// 2. pero si el valor no viene que sesa undefined (analizar que todos tengan undefined de manera predeterminada)
+// 3. si cambio la marca el resto de parametroos tienen que ser undefined porque se reinician las busquedas
+
+// var brand = "chevrolet";
+// var model = "suburban 2020";
+// var color = "negro";
+// var doors = "4";
+
+
+// var full_data =  [brand, model, color, doors];
+
+// console.log(full_data.join("+'/'+"));
+
+// '/product/searching/'+d1+'/'+d2
+
+// +d1+'/'+d2+'/'+d3+'/'+d4
+
+
+// var asociativo_vacio = ["name": "h"]

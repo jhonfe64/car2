@@ -1,0 +1,263 @@
+<%-include('layouts/header', {title: 'home'}) %>
+<%-include('partials/menu') %> 
+    <div class="container p-0" style="margin-top: 200px;">
+        <div class="container mb-5">
+            <h3>Información básica</h3>
+        </div>
+        <% if (car_to_edit){ %>
+       <form action="/updateProduct/<%=car_to_edit._id%>"  method="post" id="update_product_information" enctype="multipart/form-data" class="d-flex flex-wrap">
+            
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Marca</label>
+                <input type="text" name="brand" class="form-control" id="exampleFormControlInput1" value="<%= car_to_edit.brand %>" placeholder="Kia, chevrolet, etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Modelo</label>
+                <input type="text" name="model" class="form-control" id="exampleFormControlInput1" value="<%= car_to_edit.model %>" placeholder="Pikanto 2020 etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Color</label>
+                <input type="text" name="color" value="<%= car_to_edit.color %>" class="form-control" id="exampleFormControlInput1" placeholder="rojo verde etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Combustible</label>
+                <input type="text" name="fuelType" class="form-control" value="<%= car_to_edit.fuelType %>"  id="exampleFormControlInput1" placeholder="Gasolina diesel etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Puertas</label>
+                <input type="number" name="doors" value="<%= car_to_edit.doors %>"  class="form-control" id="exampleFormControlInput1" placeholder="2, 3, 5" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Transmisión</label>
+                <input type="text" name="transmision"  value="<%= car_to_edit.transmision%>"  class="form-control" id="exampleFormControlInput1" placeholder="manual automática" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Kilometraje</label>
+                <input type="number" name="mileaje" step="any"  value="<%= car_to_edit.mileaje%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Cilindrada</label>
+                <input type="number" name="cylinder_capacity" step="any"  value="<%= car_to_edit.cylinder_capacity%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro asientos</label>
+                <input type="number" name="seats" step="any"  value="<%= car_to_edit.seats%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro velocidades</label>
+                <input type="number" name="gears" step="any"  value="<%= car_to_edit.gears%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Placa</label>
+                <input type="text" name="plates" step="any"  value="<%= car_to_edit.plates%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro llaves</label>
+                <input type="number" name="keys" step="any"  value="<%= car_to_edit.keys%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Rines</label>
+                <input type="text" name="rims" step="any"  value="<%= car_to_edit.rims%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Vel maxima</label>
+                <input type="number" name="max_vel" step="any"  value="<%= car_to_edit.max_vel%>"  class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Aceleracion de 0 a 100</label>
+                <input type="number" step="any" name="gun"  value="<%= car_to_edit.gun%>"  class="form-control" id="exampleFormControlInput1" placeholder="52 s" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Capacidad tanque</label>
+                <input type="number" step="any" name="tank"  value="<%= car_to_edit.tank%>"  class="form-control" id="exampleFormControlInput1" placeholder="52 s" required>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Potencia del motor</label>
+                <input type="number" step="any" name="hp"  value="<%= car_to_edit.hp%>"  class="form-control" id="exampleFormControlInput1" placeholder="52 s" required>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Descripción</label>
+                <textarea  class="form-control" name="description" id="" cols="30" rows="10" required>"<%= car_to_edit.description%></textarea>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Precio</label>
+                <input type="number" step="any" name="price"  value="<%= car_to_edit.price%>"  class="form-control" id="exampleFormControlInput1" placeholder="100000" required>
+            </div>
+            <div class="col-12">
+               <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file"  name="images" class="custom-file-input" multiple="multiple" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap col-12 mt-5">
+                <% for(i of car_to_edit.image) { %>
+                    <a href="#" class="delete_image"><span class="text-danger"><i class="fas fa-times-circle"></i></span></a>
+                    <div style="width: 200px;" class="existing_img_container">
+                        <img class="w-100" src="../upload/<%= i.file_name %>" alt="">
+                    </div>
+                    <input id="product_id" type="hidden" value="<%= i._id %>">
+                <% } %>   
+            </div> 
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3 class="mb-5">Seguridad</h3>
+                        <div class="form-check">
+                            <% if(car_to_edit.isofix){ %>
+                                <input class="form-check-input" type="checkbox" id="isofix" value="isofix" name="isofix" checked>
+                            <% }else{ %> 
+                                <input class="form-check-input" type="checkbox" id="isofix" value="isofix" name="isofix">
+                            <% } %>    
+                            <label class="form-check-label" for="isofix"></label>
+                                Isofix
+                            </label>                                       
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.abs){ %>
+                                <input class="form-check-input" type="checkbox" id="abs" value="abs" name="abs" checked>
+                            <% }else{ %> 
+                                <input class="form-check-input" type="checkbox" id="abs" value="abs" name="abs">
+                            <% } %>     
+                            <label class="form-check-label" for="abs"></label>
+                                Frenos abs
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.fa){ %>
+                                <input class="form-check-input" type="checkbox" id="fa" value="fa" name="fa" checked>
+                            <% }else{ %> 
+                                <input class="form-check-input" type="checkbox" id="fa" value="fa" name="fa">
+                            <% } %>     
+                            <label class="form-check-label" for="fa"></label>
+                                Frenado autónomo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.tracControl){ %>
+                                <input class="form-check-input" type="checkbox" id="tracControl" value="tracControl" name="tracControl" checked>
+                            <% }else{ %> 
+                                <input class="form-check-input" type="checkbox" id="tracControl" value="tracControl" name="tracControl">
+                            <% } %> 
+                            <label class="form-check-label" for="tracControl"></label>
+                                Control de traccción
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.emergencyBreak){ %>
+                                <input class="form-check-input" type="checkbox" id="emergencyBreak" value="emergencyBreak" name="emergencyBreak" checked>
+                            <% }else{ %>
+                                <input class="form-check-input" type="checkbox" id="emergencyBreak" value="emergencyBreak" name="emergencyBreak">
+                            <% } %>    
+                            <label class="form-check-label" for="emergencyBreak"></label>
+                                Frenado de emergencía
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.airbags){ %>
+                                <input class="form-check-input" type="checkbox" id="airbags" value="airbags" name="airbags" checked>
+                            <% }else{ %>
+                                <input class="form-check-input" type="checkbox" id="airbags" value="airbags" name="airbags">
+                            <% } %>      
+                            <label class="form-check-label" for="airbags"></label>
+                                Airbags
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.deadAngle){ %>
+                                <input class="form-check-input" type="checkbox" id="deadAngle" value="deadAngle" name="deadAngle" checked>
+                            <% }else{ %>
+                                <input class="form-check-input" type="checkbox" id="deadAngle" value="deadAngle" name="deadAngle">
+                            <% } %>     
+                            <label class="form-check-label" for="deadAngle"></label>
+                                Detección angulo muerto
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.fatigueDetector){ %>
+                                <input class="form-check-input" type="checkbox" id="fatigueDetector" value="fatigueDetector" name="fatigueDetector" checked>
+                            <% }else{ %>
+                                <input class="form-check-input" type="checkbox" id="fatigueDetector" value="fatigueDetector" name="fatigueDetector">
+                            <% } %>     
+                            <label class="form-check-label" for="fatigueDetector"></label>
+                                Detector de fatiga
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <% if(car_to_edit.foglights){ %>
+                                <input class="form-check-input" type="checkbox" id="foglights" value="foglights" name="foglights" checked>
+                            <% }else{ %>  
+                                <input class="form-check-input" type="checkbox" id="foglights" value="foglights" name="foglights">
+                            <% } %>     
+                            <label class="form-check-label" for="foglights"></label>
+                                Luces anti niebla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-5 mt-md-0">
+                        <h3 class="mb-5">Interior</h3>
+                    <div class="form-check">
+                        <% if(car_to_edit.airconditioning){ %>
+                            <input class="form-check-input" type="checkbox" id="airconditioning" value="airconditioning" name="airconditioning" checked>
+                        <% }else { %> 
+                            <input class="form-check-input" type="checkbox" id="airconditioning" value="airconditioning" name="airconditioning">
+                        <% } %>    
+                        <label class="form-check-label" for="airconditioning"></label>
+                          Aire acondicionado
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <% if(car_to_edit.bloototh){ %>
+                            <input class="form-check-input" type="checkbox" id="bloototh" value="bloototh" name="bloototh" checked>
+                        <% }else { %> 
+                            <input class="form-check-input" type="checkbox" id="bloototh" value="bloototh" name="bloototh">
+                        <% } %>    
+                        <label class="form-check-label" for="bloototh"></label>
+                            Bloototh
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <% if(car_to_edit.parkingSensor){ %>
+                            <input class="form-check-input" type="checkbox" id="parkingSensor" value="parkingSensor" name="parkingSensor" checked>
+                        <% }else { %> 
+                            <input class="form-check-input" type="checkbox" id="parkingSensor" value="parkingSensor" name="parkingSensor">
+                        <% } %>       
+                        <label class="form-check-label" for="parkingSensor"></label>
+                            Sensor parqueo
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <% if(car_to_edit.radio){ %>
+                            <input class="form-check-input" type="checkbox" id="radio" value="radio" name="radio" checked>
+                        <% }else { %> 
+                            <input class="form-check-input" type="checkbox" id="radio" value="radio" name="radio">
+                        <% } %>      
+                        <label class="form-check-label" for="radio"></label>
+                            Radio
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <% if(car_to_edit.leatherSeats){ %>
+                            <input class="form-check-input" type="checkbox" id="leatherSeats" value="leatherSeats" name="leatherSeats" checked>
+                        <% }else { %> 
+                            <input class="form-check-input" type="checkbox" id="leatherSeats" value="leatherSeats" name="leatherSeats">
+                        <% } %>      
+                        <label class="form-check-label" for="leatherSeats"></label>
+                            Silletería en cuero
+                        </label>
+                      </div>
+                    </div>
+                </div>                
+                <div class="col-12 mt-3 mb-5 p-0 pt-3">
+                    <button type="submit" id="update_info" class="btn btn-primary w-100">Enviar</button>
+                </div>
+            </div>
+       </form>
+       <% } %>
+    </div>
+<%-include('layouts/footer') %>

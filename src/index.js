@@ -1,0 +1,14 @@
+const database = require('./database');
+const express = require('express');
+const config = require('./server/config');
+const pr = require('./public/upload/pr');
+
+
+const app = config(express());
+
+
+
+app.listen(app.get('port'), function(){
+    console.log('server on port ', app.get('port'))
+})
+

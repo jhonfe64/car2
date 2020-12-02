@@ -1,0 +1,408 @@
+<%-include('layouts/header', {title: 'product'}) %>
+<%-include('partials/menu') %>
+
+
+<% if(single_product){ %>
+    <div class="container new_page">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h4 class="mb-4"><%= single_product.brand %> <%= single_product.model %></h4>
+                <div class="col-12 p-0">
+                    <img class="img-fluid" src="../upload/<%=single_product.image[0].file_name %>" alt="">
+                </div>
+                <div class="d-flex">
+                    <a href="/product/gallery/<%= single_product._id %>" class="btn btn-dark rounded-0 col-5">Ver galería</a>
+                    <button class="btn btn-warning rounded-0 col-7" data-toggle="modal" data-target="#exampleModal" >Contactar</button>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 mt-5 mt-lg-0">
+                <div class="d-flex pb-2">
+                    <div class="col-4 text-center">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock text-danger mb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
+                            <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                          </svg>
+                          <h6 class="mb-0"><small class="font-weight-bold"><%= single_product.mileaje %> Km</small></h6>
+                    </div>
+                    <div class="col-4 text-center">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear text-danger mb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+                            <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+                          </svg>
+                          <h6 class="mb-0"><small class="font-weight-bold"><%= single_product.cylinder_capacity %> L</small></h6>
+                    </div>
+                    <div class="col-4 text-center">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-joystick text-danger mb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.106 15.553L.553 12.276A1 1 0 0 1 0 11.382V9.471a1 1 0 0 1 .606-.89L6 6.269v1.088L1 9.5l5.658 2.83a3 3 0 0 0 2.684 0L15 9.5l-5-2.143V6.27l5.394 2.312a1 1 0 0 1 .606.89v1.911a1 1 0 0 1-.553.894l-6.553 3.277a2 2 0 0 1-1.788 0z"/>
+                            <path fill-rule="evenodd" d="M7.5 9.5v-6h1v6h-1z"/>
+                            <path d="M10 9.75c0 .414-.895.75-2 .75s-2-.336-2-.75S6.895 9 8 9s2 .336 2 .75zM10 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                          </svg>
+                          <h6 class="mb-0"><small class="font-weight-bold"><%= single_product.transmision %></small></h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 ">
+                        <ul class="m-0 p-0 mt-4">
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Color:</div>
+                                 <div class="w-50 text-right font-weight-bold"><%= single_product.color %></div>
+                            </li> 
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Velocidades:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.gears%></div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Llaves:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.keys%></div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Rines:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.rims%></div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Vel max:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.max_vel %> Km/h</div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">de 0 a 100 km/h:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.gun %> S</div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Potencia:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.hp %> Hp</div>
+                            </li>
+                            <li class="mb-2 border-bottom pb-2 d-flex">
+                                <div class="w-50">Placa:</div>
+                                <div class="w-50 text-right font-weight-bold"><%= single_product.plates %></div>
+                            </li>
+                            <li class="pt-2 pb-2 d-flex justify-content-between align-items-center"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-return-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/>
+                              </svg>
+                                <h3 class="m-0 text-dark text-right"><%= single_product.price %> COP</h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <h2 class="w-100 font-weight-bold pt-5 pb-5">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-right text-warning" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                      </svg>    
+                    Caracteristicas
+                </h2>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-lg-4">
+                <div>
+                    <h3 class="text-dark">Seguridad</h3>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 single_product_features">
+                <% if(single_product.isofix){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5  text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Isofix
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        Isofix
+                    </p>
+                <% } %>  
+                <% if(single_product.abs){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Frenos abs
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        Frenos abs
+                    </p>
+                <% } %>  
+                <% if(single_product.fa){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Frenado autónomo
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Frenado autónomo
+                    </p>
+                <% } %> 
+                <% if(single_product.tracControl){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Control de tracción
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Control de tracción
+                    </p>
+                <% } %>  
+                <% if(single_product.emergencyBreak){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Frenado de emergencia
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Frenado de emergencia
+                    </p>
+                <% } %>  
+                <% if(single_product.airbags){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Airbags
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Airbags
+                    </p>
+                <% } %>  
+                <% if(single_product.deadAngle){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2 ">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Detección ángulo muerto
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Detección ángulo muerto
+                    </p>
+                <% } %> 
+                <% if(single_product.fatigueDetector){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Detector de fatiga
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Detector de fatiga
+                    </p>
+                <% } %> 
+                <% if(single_product.foglights){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Luces antiniebla
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Luces antiniebla
+                    </p>
+                <% } %>                                                    
+            </div>
+            <div class="col-12 col-lg-4 mt-5">
+                <div>
+                    <h3 class="text-dark">Interior</h3>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 mt-5 single_product_features">
+                <% if(single_product.airconditioning){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Aire acondicionado
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Aire acondicionado
+                    </p>
+                <% } %>   
+                <% if(single_product.bloototh){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Bloototh
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Bloototh
+                    </p>
+                <% } %>
+                <% if(single_product.parkingSensor){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Sensor de parqueo
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Sensor de parqueo
+                    </p>
+                <% } %> 
+                <% if(single_product.radio){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Radio
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Radio
+                    </p>
+                <% } %> 
+                <% if(single_product.leatherSeats){ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-success checked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"/>  
+                          </svg>    
+                          Silletería en cuero
+                        </p>
+                <% }else{ %>
+                    <p class="d-flex align-items-center pb-2 pt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash-circle-fill mr-5 text-danger unchecked" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                          Silletería en cuero
+                    </p>
+                <% } %>                
+            </div>
+            <div class="col-12 mt-5 mb-5">
+                <h2 class="w-100 font-weight-bold pt-5 pb-5">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-right text-warning" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                      </svg>     
+                    Descripción
+                </h2>
+                <p class="text-justify">
+                    <%= single_product.description %> 
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                  </svg>
+              </h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Nombres</label>
+                    <input type="text" name="names" class="form-control" id="names">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Apellidos</label>
+                    <input type="text" name="lastname" class="form-control" id="lastnames">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Numero telefono</label>
+                    <input type="number" name="phone" class="form-control" id="phone">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+<% } %> 
+<%-include('partials/footer') %>
+<%-include('layouts/footer') %>

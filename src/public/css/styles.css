@@ -1,0 +1,162 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+ul,li,a,p,h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;;
+}
+
+ul {
+    list-style: none;
+    
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+p {
+    margin: 0;
+}
+
+
+/*====================================
+ NAVBAR
+=====================================  */
+
+
+.navbar ul li a {
+    color: #023047;
+}
+
+.header_scroll_color {
+    background-color: red;
+}
+
+/*====================================
+ JUMBOTRON
+===================================== */
+
+.jumbo_promotion {
+    background-image: url("../img/girl.jpg");
+    background-position: center, center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: hidden;
+    background-attachment: scroll;
+}
+
+
+
+.jumbo_promotion form select,.searching_btn  {
+    width: 32%;
+}
+
+.jumbo_promotion .description h1 {
+    font-weight: 700;
+}
+
+.jumbo_promotion .description p {
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: #ecf0f1;
+    letter-spacing: 2px;
+}
+
+
+.more_viewed_card {
+    width: 30%;
+    border: 1px solid red;
+}
+
+
+.unchecked{
+    font-size: 1.2rem;
+}
+
+.checked {
+    font-size: 1.4rem;
+}
+
+.single_product_features p {
+    border-bottom: 1px solid #ecf0f1;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+footer a {
+    color: #ecf0f1;
+}
+
+footer a:hover {
+    color: #ecf0f1;
+}
+
+
+.filters_btn:focus {
+    outline: none;
+}
+
+.rotateArrow {
+    transform: rotate(180deg);
+}
+
+
+
+/*====================================
+ SLIDER
+===================================== */
+
+
+.slider_controllers {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
+    color:white;
+}
+
+
+@media only screen and (max-width: 992px) {
+    nav ul li {
+        border-bottom: 1px solid #dee2e6;
+    }
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    .more_viewed_card {
+        width: 45%;
+    }
+
+  }
+  
+
+  @media only screen and (max-width: 768px) {
+    .jumbo_promotion form select,.searching_btn  {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .jumbo_promotion .description h1 {
+        font-size: 3rem !important;
+
+    }
+
+    .more_viewed_card {
+        width: 100%;
+    }
+  }

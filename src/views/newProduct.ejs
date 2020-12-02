@@ -1,0 +1,201 @@
+<%-include('layouts/header', {title: 'home'}) %>
+<%-include('partials/menu') %> 
+    <div class="container p-0" style="margin-top: 200px;">
+        <div class="container mb-5">
+            <h3>Información básica</h3>
+            <div class="alert alert-info rounded-0 alert-dismissible fade show mt-5" role="alert">
+                Tamaño de imagenes recomendado: 1920px 1080px, Formatos permitidos: jpg, jpeg, png.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+        </div>
+       <form action="/create"  method="post" enctype="multipart/form-data" class="d-flex flex-wrap">
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Marca</label>
+                <input type="text" name="brand" class="form-control" id="exampleFormControlInput1" placeholder="Kia, chevrolet, etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Modelo</label>
+                <input type="text" name="model" class="form-control" id="exampleFormControlInput1" placeholder="Pikanto 2020 etc" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Color</label>
+                <input type="text" name="color" class="form-control" id="exampleFormControlInput1" placeholder="Rojo" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Combustible</label>
+                <input type="text" name="fuelType"  class="form-control" id="exampleFormControlInput1" placeholder="Gasolina diesel" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Puertas</label>
+                <input type="number" name="doors" class="form-control" id="exampleFormControlInput1" placeholder="3" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Transmisión</label>
+                <input type="text" name="transmision" class="form-control" id="exampleFormControlInput1" placeholder="manual automática" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Kilometraje km</label>
+                <input type="number" name="mileaje" step="any" class="form-control" id="exampleFormControlInput1" placeholder="2500" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Cilindrada Litros</label>
+                <input type="number" name="cylinder_capacity" step="any" class="form-control" id="exampleFormControlInput1" placeholder="2.5" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro asientos</label>
+                <input type="number" name="seats" step="any" class="form-control" id="exampleFormControlInput1" placeholder="2" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro velocidades</label>
+                <input type="number" name="gears" step="any" class="form-control" id="exampleFormControlInput1" placeholder="5" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Placa</label>
+                <input type="text" name="plates" step="any" class="form-control" id="exampleFormControlInput1" placeholder="HK 548" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Nro llaves</label>
+                <input type="number" name="keys" step="any" class="form-control" id="exampleFormControlInput1" placeholder="200" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Rines " + Material</label>
+                <input type="text" name="rims" step="any" class="form-control" id="exampleFormControlInput1" placeholder='35" Aluminio' required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Vel maxima Km/h</label>
+                <input type="number" name="max_vel" step="any" class="form-control" id="exampleFormControlInput1" placeholder="250" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Aceleracion de 0 a 100 Segundos</label>
+                <input type="number" step="any" name="gun" class="form-control" id="exampleFormControlInput1" placeholder="5" required>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="exampleFormControlInput1">Capacidad tanque Litros</label>
+                <input type="number" step="any" name="tank" class="form-control" id="exampleFormControlInput1" placeholder="45" required>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Potencia del motor Hp</label>
+                <input type="number" step="any" name="hp" class="form-control" id="exampleFormControlInput1" placeholder="2500" required>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Descripción</label>
+                <textarea  class="form-control" name="description" id="" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="form-group col-12">
+                <label for="exampleFormControlInput1">Precio COP</label>
+                <input type="number" step="any" name="price" class="form-control" id="exampleFormControlInput1" placeholder="100000" required>
+            </div>
+            <div class="col-12">
+               <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file"  name="images" class="custom-file-input" multiple="multiple" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01" required>
+                        <label class="custom-file-label" for="inputGroupFile01">Seleccione un archivo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-5 mb-5">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3 class="mb-5">Seguridad</h3>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isofix" value="isofix" name="isofix">
+                            <label class="form-check-label" for="isofix"></label>
+                                Isofix
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="abs" value="abs" name="abs">
+                            <label class="form-check-label" for="abs"></label>
+                                Frenos abs
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="fa" value="fa" name="fa">
+                            <label class="form-check-label" for="fa"></label>
+                                Frenado autónomo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="tracControl" value="tracControl" name="tracControl">
+                            <label class="form-check-label" for="tracControl"></label>
+                                Control de traccción
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="emergencyBreak" value="emergencyBreak" name="emergencyBreak">
+                            <label class="form-check-label" for="emergencyBreak"></label>
+                                Frenado de emergencía
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="airbags" value="airbags" name="airbags">
+                            <label class="form-check-label" for="airbags"></label>
+                                Airbags
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="deadAngle" value="deadAngle" name="deadAngle">
+                            <label class="form-check-label" for="deadAngle"></label>
+                                Detección angulo muerto
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="fatigueDetector" value="fatigueDetector" name="fatigueDetector">
+                            <label class="form-check-label" for="fatigueDetector"></label>
+                                Detector de fatiga
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="foglights" value="foglights" name="foglights">
+                            <label class="form-check-label" for="foglights"></label>
+                                Luces anti niebla
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mt-5 mt-md-0">
+                        <h3 class="mb-5">Interior</h3>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="airconditioning" value="airconditioning" name="airconditioning">
+                        <label class="form-check-label" for="airconditioning"></label>
+                          Aire acondicionado
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="bloototh" value="bloototh" name="bloototh">
+                        <label class="form-check-label" for="bloototh"></label>
+                            Bloototh
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="parkingSensor" value="parkingSensor" name="parkingSensor">
+                        <label class="form-check-label" for="parkingSensor"></label>
+                            Sensor parqueo
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="radio" value="radio" name="radio">
+                        <label class="form-check-label" for="radio"></label>
+                            Radio
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="leatherSeats" value="leatherSeats" name="leatherSeats">
+                        <label class="form-check-label" for="leatherSeats"></label>
+                            Silletería en cuero
+                        </label>
+                      </div>
+                    </div>
+                </div>                
+                <div class="col-12 mt-3 mb-5 p-0 pt-3">
+                    <button class="btn btn-primary w-100">Enviar</button>
+                </div>
+            </div>
+       </form>
+    </div>
+<%-include('layouts/footer') %>

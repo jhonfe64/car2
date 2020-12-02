@@ -1,0 +1,32 @@
+<%-include('layouts/header', {title: 'home'}) %>
+
+<%-include('partials/menu') %>
+<div class="jumbotron rounded-0 jumbo_promotion d-flex align-items-center" style="color: #ffffff;" id="jumbo_promotion">
+    <div class="description container">
+        <h1 class="text-center mb-3" style="font-size: 70px;">Los mejores autos usados</h1>
+        <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nobis iure necessitatibus, placeat similique commodi consequuntur in optio eius culpa</p>
+        <form action="/product/searching" method="POST" class="row d-flex flex-wrap justify-content-around">
+                <% if(brands){ %>
+                    <select id="brand" name="brand" class="form-control border-0">
+                        <option id="empty" value="" selected="selected" disabled>Seleccione una marca</option>
+                        <% for(i=0; i<brands.length; i++){ %>    
+                        <option value="<%= brands[i] %>" name="<%= brands[i] %>"><%= brands[i] %></option>
+                        <% } %>
+                    </select>
+                <% } %>
+            <select class="form-control border-0" name="model" id="model_select" disabled>
+                <option>seleccione un modelo</option>
+            </select>
+            <button class="btn btn-warning searching_btn border-0" id="searching_btn">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                  </svg>Buscar
+            </button>
+        </form>
+    </div>
+</div>
+<%-include('partials/new_arrivals') %>
+<%-include('partials/most_viewed') %>
+<%-include('partials/footer') %>
+<%-include('layouts/footer') %>

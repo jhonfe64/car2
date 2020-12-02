@@ -1,0 +1,49 @@
+<%-include('layouts/header', {title: 'home'}) %>
+<%-include('partials/menu') %>
+<div class="container new_page">
+    <div class="row">
+        <div class="container">
+            <h1 class="mt-5 mb-5">Todos los productos</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Acciones</th>
+                            <th class="text-center" scope="col">Marca</th>
+                            <th class="text-center" scope="col">Modelo</th>
+                            <th class="text-center" scope="col">Imagen</th>
+                        </tr>
+                    </thead>
+                    <% if(all_cars){ %>
+                         
+                        <% for(i of all_cars){ %>
+                        <tbody>
+                            <tr>
+                            <th class="border-0" scope="row">
+                                <div class="action_icons text-center">
+                                    <a href="deleteProduct/<%= i._id %>">
+                                        <span class="text-danger"><i class="far fa-trash-alt"></i></span>
+                                    </a>
+                                    <a href="/updateProduct/<%= i._id %>">
+                                        <span><i class="far fa-edit"></i></span>
+                                    </a>
+                                </div>
+                            </th> 
+                                <td class="text-center"><%= i.brand %></td>
+                                <td class="text-center"><%= i.model %></td>
+                                <td class="d-flex justify-content-center border-0">
+                                    <div class="img_container" style="width:150px">
+                                        <img class="w-100" src="../upload/<%=i.image[0].file_name %>" alt="">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <% } %>   
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-include('layouts/footer') %>  

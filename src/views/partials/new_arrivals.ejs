@@ -1,0 +1,30 @@
+
+<% if(new_arrivals){ %>
+    <div class="container">
+        <h1 class="mb-5 mt-5">Recientemente agregados</h1>
+        <div class="row d-flex justify-content-between">
+            <div class="container d-flex justify-content-between flex-wrap">
+                <% for(i of new_arrivals){ %>
+                    <div class="card more_viewed_card mb-5 border-0 shadow-sm p-0">
+                        <div class="img_container">
+                            <img src="../upload/<%= i.image[0].file_name %>" class="card-img-top img-fluid" alt="..."> 
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= i.brand %> <%= i.model %></h5>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="col-5 bg-light p-2 rounded-lg"><%= i.transmision %></span>
+                                <span class="col-5 bg-light p-2 rounded-lg"><%= i.cylinder_capacity %> L</span>
+                            </div>
+                            <h5 class="mb-3"><%= i.mileaje %> km</h5>
+                            <h5 class="mb-3"><%= i.price %>  COP</h5>
+                            <a href="/product/<%= i._id %>"  class="btn btn-outline-danger d-block">Ver más</a>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+          </div>
+    </div>
+<% } else{ %>  
+    <div></div>
+<% } %>  
+
