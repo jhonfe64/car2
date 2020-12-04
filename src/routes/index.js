@@ -35,9 +35,9 @@ module.exports = function(app){
     router.get('/deleteProduct/:id', /*edit_produts.n,*/ edit_products.delete);
     // ===> Esta ruta me trae todos los carros para ser editados 
     router.get('/getCars', edit_products.allproducts);
-    // ===> Ruta para traer el form de actaulizar producto
+    // ===> Ruta para traer el form de actaulizar producto y colocar info en el
     router.get('/updateProduct/:id', edit_products.updateProduct);
-    // ===> Ruta que permite envia los nuevos datos para actualizar el producto
+    // ===> Ruta que permite enviar los nuevos datos para actualizar el producto
     router.post('/updateProduct/:id', edit_products.saveEditProducts);
 
     app.use(router);

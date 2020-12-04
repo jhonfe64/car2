@@ -5,6 +5,9 @@ const productInfoSchema = require('mongoose').model('productInfo').schema;
 //para eliminar las imagenes de la carpeta
 const fs = require('fs');
 const path = require('path');
+const { set } = require('mongoose');
+const { findById, findOneAndUpdate } = require('../models/productInfo');
+const { Console } = require('console');
 
 
 const ctrl = {};
@@ -19,16 +22,17 @@ ctrl.allproducts = async(req, res)=>{
 ctrl.delete = async (req, res) => {    
     const id = req.params.id;
 
-    //par eliminar las imagenes de la carpeta
-   //encuentreme donde el id o los _ids del modelo Image coincidan con los ids que guarda item en a propiedad image
+   //En la variable item = incuentre donde el auto coincida con el id
    const item = await productInfo.findById(id);
 
    let images_to_delete = [];
+
    const find = await Image.find({ _id: { $in: item.image }});
     for(images of find){
         images_to_delete.push(images.file_name);
     }
 
+    //par eliminar las imagenes de la carpeta
     for(i=0; i<images_to_delete.length; i++){
         fs.unlink(path.join(__dirname, `../public/upload/${images_to_delete[i]}`), function(err){
             if(err){
@@ -36,10 +40,10 @@ ctrl.delete = async (req, res) => {
             }
         });
     }
-
-    //Encuentre el elemento con el auto con el id indicado
+    //A el auto que se sselecciono por id guardado en la variable itemp, busquele la propiedad .image(que son todas laas imagenes de ese carro, las ids);s
     item_images = item.image;
     //ahora del Modelo Image borre todas las imagenes donde los ids correspondan a los ids de la propiedad item.image
+    //encuentreme donde el id o los _ids del modelo Image coincidan con los ids que guarda item en a propiedad image
     const deletedImages = await Image.deleteMany({ _id: { $in: item.image } });
     //Ahora borre el carro del modelo productInfo
     let delete_car = await productInfo.deleteOne({_id: id});
@@ -47,7 +51,6 @@ ctrl.delete = async (req, res) => {
         res.redirect('/getCars');
     }
 }
-
 
 ctrl.updateProduct = async(req, res)=>{
     const id = req.params.id;
@@ -58,9 +61,62 @@ ctrl.updateProduct = async(req, res)=>{
     }
 }
 
-
 ctrl.saveEditProducts = async(req, res)=>{
-    console.log(req.body);
+    //id del auto
+    const id = req.params.id;
+    //ids de las imagenes que se van a eliminar
+    const {picture_id} = req.body;
+
+    //de esas ids debemos traer el nombre de las imagenes para despues borrarlas en la carpeta
+    var find_images_names = await Image.find({_id: { $in: picture_id}});
+    //Eliminamos las imagenes de la carpeta
+    for(i=0; i<find_images_names.length; i++){
+            fs.unlink(path.join(__dirname, `../public/upload/${find_images_names[i].file_name}`), function(err){
+            if(err){
+                throw err;
+            }
+        });
+    }
+    //borrando las imagenes relacionadas del modelo Image
+    var deleted_pictures = await Image.deleteMany({_id: { $in: picture_id}});
+
+
+    await productInfo.findOneAndUpdate({_id: id}, {
+        brand: req.body.brand.trim(),
+        model: req.body.model.trim(),
+        color: req.body.color.trim(),
+        fuelType: req.body.fuelType.trim(),
+        doors: req.body.doors.trim(),
+        transmision: req.body.transmision.trim(),
+        mileaje: req.body.mileaje.trim(),
+        cylinder_capacity: req.body.cylinder_capacity.trim(),
+        seats: req.body.seats.trim(),
+        gears: req.body.gears.trim(),
+        plates: req.body.plates.trim(),
+        keys: req.body.keys.trim(),
+        rims: req.body.rims.trim(),
+        max_vel: req.body.max_vel.trim(),
+        gun: req.body.gun.trim(),
+        tank: req.body.tank.trim(),
+        hp: req.body.hp.trim(),
+        description: req.body.description.trim(),
+        price: req.body.price.trim(),
+        isofix: req.body.isofix,
+        abs: req.body.abs,
+        fa: req.body.fa,
+        tracControl: req.body.tracControl,
+        emergencyBreak: req.body.emergencyBreak,
+        airbags: req.body.airbags,
+        deadAngle: req.body.deadAngle,
+        fatigueDetector: req.body.fatigueDetector,
+        foglights: req.body.foglights,
+        airconditioning: req.body.airconditioning,
+        bloototh: req.body.bloototh,
+        parkingSensor: req.body.parkingSensor,
+        radio: req.body.radio,
+        leatherSeats: req.body.leatherSeats
+   });
+
     res.redirect('/getCars');
 }
 
