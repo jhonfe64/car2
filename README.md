@@ -30,7 +30,9 @@ This api rest for deliveries allows sign up new users, create orders, edit order
 - Clone the repository https://github.com/jhonfe64/car2.git
 - Use npm i to install all dependences 
 
-to run the server please type on VSC console: 
 
-cd src
-nodemon index
+### To run teh project
+
+Make sure to install mongoose.
+type on vsc console => cd car2 and cd src //to get into the folders
+type nodemon index // to run the server
