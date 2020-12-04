@@ -5,9 +5,6 @@ const productInfoSchema = require('mongoose').model('productInfo').schema;
 //para eliminar las imagenes de la carpeta
 const fs = require('fs');
 const path = require('path');
-const { set } = require('mongoose');
-const { findById, findOneAndUpdate } = require('../models/productInfo');
-const { Console } = require('console');
 
 
 const ctrl = {};
@@ -115,7 +112,21 @@ ctrl.saveEditProducts = async(req, res)=>{
         parkingSensor: req.body.parkingSensor,
         radio: req.body.radio,
         leatherSeats: req.body.leatherSeats
-   });
+   })
+
+
+    // var r = await productInfo.findById(id);
+    // for(i=0; i<r.length; i++){
+
+    // }
+    // console.log(typeof r);
+    
+
+    // elimine de productInfo 
+    //var x = await productInfo.deleteOne({'image': picture_id });
+    // const deletedImages = await Image.deleteMany({ _id: { $in: item.image } });
+
+    //Borre las imagenes que eliminó el usuario
 
     res.redirect('/getCars');
 }
