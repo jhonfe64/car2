@@ -112,7 +112,7 @@ ctrl.saveEditProducts = async(req, res)=>{
         parkingSensor: req.body.parkingSensor,
         radio: req.body.radio,
         leatherSeats: req.body.leatherSeats
-   })
+   });
 
 
     // var r = await productInfo.findById(id);

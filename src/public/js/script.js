@@ -20,6 +20,8 @@ const delete_image = document.getElementsByClassName('delete_image');
 const existing_img_container = document.getElementsByClassName('existing_img_container');
 const product_id = document.getElementById('product_id');
 const update_info = document.getElementById('update_info');
+const updatePicturesInput = document.getElementById("updatePicturesInput");
+
 
 
 
@@ -245,6 +247,17 @@ if(delete_image){
 
     delete_images();
 }
+
+//Al editar productos... cuando se sube una imagen queremos que se muestre antes de enviarla
+
+if(updatePicturesInput){
+    updatePicturesInput.addEventListener("change", function(){
+        const images = updatePicturesInput.files;
+        console.log(images);
+    });
+}
+
+
 
 
 
