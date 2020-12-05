@@ -29,12 +29,10 @@ ctrl.index = async (req, res) => {
         result = [...no_buplicated_brand];        
     }
 
-
     res.render('index', {product_info: product_info, new_arrivals: new_arrivals, brands: result});
-    console.log(brands)
-    brands = [];
-
+    result = "";
 }
+
 
 
 
