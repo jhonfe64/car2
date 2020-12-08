@@ -63,6 +63,8 @@ ctrl.saveEditProducts = async(req, res)=>{
     const id = req.params.id;
     //ids de las imagenes que se van a eliminar
     const {picture_id} = req.body;
+    //imagenes nuevas a subir
+    console.log(req.files);
 
     //de esas ids debemos traer el nombre de las imagenes para despues borrarlas en la carpeta
     var find_images_names = await Image.find({_id: { $in: picture_id}});
@@ -112,7 +114,7 @@ ctrl.saveEditProducts = async(req, res)=>{
         parkingSensor: req.body.parkingSensor,
         radio: req.body.radio,
         leatherSeats: req.body.leatherSeats
-   });
+   }, {useFindAndModify: false});
 
 
     // var r = await productInfo.findById(id);

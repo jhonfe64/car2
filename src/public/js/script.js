@@ -21,6 +21,7 @@ const existing_img_container = document.getElementsByClassName('existing_img_con
 const product_id = document.getElementById('product_id');
 const update_info = document.getElementById('update_info');
 const updatePicturesInput = document.getElementById("updatePicturesInput");
+const cars_images = document.getElementById("cars_images");
 
 
 
@@ -251,11 +252,64 @@ if(delete_image){
 //Al editar productos... cuando se sube una imagen queremos que se muestre antes de enviarla
 
 if(updatePicturesInput){
+    //cuuando cambie el input
     updatePicturesInput.addEventListener("change", function(){
-        const images = updatePicturesInput.files;
+        //guarde la info de todas las imagenes seria un array
+        var images = Array.from(updatePicturesInput.files);
         console.log(images);
+
+        for(i=0; i<images.length; i++){
+            //creamso un numero random para cada file
+            let random_id = ((Math.random()*1000)+1);
+            //le creamos el atributo id a cada file con el valor random_id
+            images[i].id = random_id;
+            //console.log(images[i]);
+    
+            const objectUrl = URL.createObjectURL(images[i]);
+            //creando el btn x para elimnar la imagen
+            let close_button = document.createElement("a");
+            close_button.classList.add("new_delete_image_btn");
+            close_button.innerHTML = "<span class='text-danger'><i class='fas fa-times-circle'></i><span>"
+            
+            //Ceando un div para mostar la imagen
+            let new_car =  document.createElement("div");
+            new_car.setAttribute("style", "width: 200px")
+            new_car.setAttribute("class", "existing_img_container");
+            new_car.innerHTML = `<img class="w-100" src=${objectUrl} id="${random_id}">`;
+            cars_images.appendChild(close_button);
+            cars_images.appendChild(new_car);            
+        }
+
+        var new_image_id = "";
+        //Al hacer click a el boton eliminar
+        const new_delete_image_btn = document.getElementsByClassName("new_delete_image_btn");
+        for(i=0; i<new_delete_image_btn.length; i++){
+           new_delete_image_btn[i].addEventListener("click", function(){
+               this.style.display = "none";
+               //console.log(this.nextElementSibling.firstElementChild);
+               this.nextElementSibling.style.display = "none";
+               new_image_id = this.nextElementSibling.firstElementChild.id;
+      
+               cc(new_image_id)
+           });
+        }
+
+        function cc(new_image_id){
+           for(i of images){
+              if(i.id == new_image_id){
+                images.splice(images.indexOf(i), 1);
+                const dataTransfer = new DataTransfer();
+                for(i=0; i<images.length; i++){
+                    dataTransfer.items.add(new File(images, 'new car'));
+                    updatePicturesInput.files = dataTransfer.files;
+                }
+              }
+           }
+        }
+        cc();
     });
 }
+
 
 
 
