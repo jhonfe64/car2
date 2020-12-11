@@ -5,17 +5,19 @@ const productInfoSchema = require('mongoose').model('productInfo').schema;
 //para eliminar las imagenes de la carpeta
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const image = require('../models/image');
 
 
 const ctrl = {};
 
-
+//mostrando todos los productos
 ctrl.allproducts = async(req, res)=>{
     let all_cars = await productInfo.find().populate('image').sort();
-    // console.log(all_cars);
     res.render('all_products', {all_cars: all_cars});
 }
     
+//Borrando el producto completo de los 2 modelos y las imagenes de la carpeta
 ctrl.delete = async (req, res) => {    
     const id = req.params.id;
 
@@ -49,20 +51,26 @@ ctrl.delete = async (req, res) => {
     }
 }
 
+
+//trayendo la info del producto a editar
 ctrl.updateProduct = async(req, res)=>{
     const id = req.params.id;
     let car_to_edit = await (productInfo.findOne({_id: id})).populate('image');
     if(car_to_edit){
-        //enviammos la info al formulrio
         res.render('update_products', {car_to_edit: car_to_edit});
     }
 }
 
+//Cambiando y guadando la info del producto a editar
 ctrl.saveEditProducts = async(req, res)=>{
     //id del auto
     const id = req.params.id;
     //ids de las imagenes que se van a eliminar
     const {picture_id} = req.body;
+    console.log("imagenes que se van a eliminar", picture_id);
+    //imagenes antiguas que se van a resubir
+    const {existing_pictures} = req.body;
+    console.log("imagenes que ya existen", existing_pictures);
     //imagenes nuevas a subir
     console.log(req.files);
 
@@ -79,6 +87,46 @@ ctrl.saveEditProducts = async(req, res)=>{
     //borrando las imagenes relacionadas del modelo Image
     var deleted_pictures = await Image.deleteMany({_id: { $in: picture_id}});
 
+    //const valid_extentions = [];
+    let images_ids = [];
+
+    for(i of req.files){
+        const custome_name = uuidv4();
+        const imageTempPath = i.path;
+        const ext = path.extname(i.originalname).toLowerCase();
+        //ruta donde vamos a guadar las imagenes finales
+        const targetPath = path.resolve(`public/upload/${custome_name}${ext}`);
+        if(ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif'){
+            fs.rename(imageTempPath, targetPath, (err) =>{
+                if(err){
+                    throw error;
+                }
+            });
+
+            //insertando la nueva imagen nueva en el modelo imagen
+            const newImageUrl = custome_name + ext;
+            const newImage = new image({
+                file_name: newImageUrl
+            });
+            //guadando las imagenes en el modelo
+            const imgs = await newImage.save();
+            if(imgs){
+                //de las imagenes que se gurdan obtenemos los ids
+                images_ids.push(imgs._id);
+            }else{
+                console.log("internal server error");
+            }
+        }else{
+            fs.unlink(imageTempPath, function(err){
+                if(err){
+                    throw err;
+                }
+            });
+        }
+
+    }
+    
+    console.log(images_ids);
 
     await productInfo.findOneAndUpdate({_id: id}, {
         brand: req.body.brand.trim(),
@@ -113,24 +161,14 @@ ctrl.saveEditProducts = async(req, res)=>{
         bloototh: req.body.bloototh,
         parkingSensor: req.body.parkingSensor,
         radio: req.body.radio,
-        leatherSeats: req.body.leatherSeats
+        leatherSeats: req.body.leatherSeats,
+        image: images_ids.concat(existing_pictures)
    }, {useFindAndModify: false});
-
-
-    // var r = await productInfo.findById(id);
-    // for(i=0; i<r.length; i++){
-
-    // }
-    // console.log(typeof r);
-    
-
-    // elimine de productInfo 
-    //var x = await productInfo.deleteOne({'image': picture_id });
-    // const deletedImages = await Image.deleteMany({ _id: { $in: item.image } });
-
-    //Borre las imagenes que eliminó el usuario
+   images_ids = [];
+   console.log(images_ids.length);
 
     res.redirect('/getCars');
+    
 }
 
 

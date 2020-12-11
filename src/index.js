@@ -1,7 +1,7 @@
 const database = require('./database');
 const express = require('express');
 const config = require('./server/config');
-const pr = require('./public/upload/pr');
+
 
 
 const app = config(express());

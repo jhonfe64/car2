@@ -30,6 +30,7 @@ ctrl.index = async (req, res) => {
     }
 
     res.render('index', {product_info: product_info, new_arrivals: new_arrivals, brands: result});
+    brands = [];
     result = "";
 }
 
@@ -48,8 +49,8 @@ ctrl.model = async(req, res) => {
     }
     if(no_duplicated_model){
         car_model = [...no_duplicated_model];
+        res.send(car_model);
     }
-    res.send(car_model);
     single_model = [];
     car_model = "";
 }
@@ -87,7 +88,6 @@ ctrl.product_searching = async(req, res)=>{
         let no_repeat_brand = new Set(allBrands);
         let result = [...no_repeat_brand];
         res.render('../views/searching_brand_model', {search_by_brand_and_model : search_by_brand_and_model,  all_brands: result});
-      
     }
 
     if(!model){
@@ -104,6 +104,7 @@ ctrl.product_searching = async(req, res)=>{
         res.render('../views/searching_brand', {search_by_brand: search_by_brand, all_brands: result });
 
         allBrands=[];
+        result = "";
 
         // var numers2 = [1800, 1750];
 
@@ -149,16 +150,6 @@ ctrl.product_searching = async(req, res)=>{
         //     lowest_price = lowest_price + 500;
         //     console.log(lowest_price);
         // }
-
-   
-    
-    
-
-
-
-        
-     
-
         
 
         //obtener los numero smultiplos de 500

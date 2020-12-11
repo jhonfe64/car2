@@ -130,6 +130,21 @@ footer a:hover {
 }
 
 
+/*====================================
+ FEATURES
+===================================== */
+
+.features {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.features svg {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: red;
+}
+
 @media only screen and (max-width: 992px) {
     nav ul li {
         border-bottom: 1px solid #dee2e6;

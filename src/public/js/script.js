@@ -186,9 +186,10 @@ if(model_filter){
         }
     });
     model_filter.innerHTML = "";
-const ajax_consult = (car_info) => {
+    const ajax_consult = (car_info) => {
     var brand = car_info[0];
     var model = car_info[1];
+    
     $.get('/product/filters/'+ brand + "/" + model)
     .done(data =>{
 
@@ -228,28 +229,46 @@ ajax_consult();
 //Editar productos
 
 //cuando se haga click en la x de alguna de las imagenes que se trajeron (no de las nuevas que estoy subiendo)
-//enviará os ids de as imagenes a las que le dio click en la x para enviarlas y asi eliminarlas del modelo
-
+//enviará los ids de as imagenes a las que le dio click en la x para enviarlas y asi eliminarlas del modelo
+//le creará un input hidden a cada una
 if(delete_image){
     function delete_images(){
         for(i=0; i<delete_image.length; i++){
             delete_image[i].addEventListener("click", function(){
                 this.style.display = "none";
                 this.nextElementSibling.style.display = "none";  
+                //cada una de las magenes que se cargan de la bd guarda su id en un input tipe hidden update products.ejs linea 105
+                //al hacer click sobre el btn x obtengo el value de esa imagen que es el id de la imagen a eliminar
                 let picture_id = this.nextElementSibling.nextElementSibling.value;
+                //tomo el id de esa imagen y creo otro input para cada imagen que se va a eliminar con name = picture_id
+                //con eso {picture_id} = req.body, me mostrara las ids de las imagenes a eliminar 
                 const new_imput = document.createElement("input");
                 new_imput.setAttribute("type", "hidden");
                 new_imput.setAttribute("name", "picture_id");
                 new_imput.setAttribute("value", picture_id);
                 update_product_information.appendChild(new_imput);
+                //enviamos las ids de las imagenes que se vana  resubir
+                remove_existing_image(picture_id);
+                
             });
         }
+
+        function remove_existing_image(picture_id){
+            //seleccionamos del dom todos los elementos con class product_id update products.ejs linea 105
+            const product_id = document.getElementsByClassName("product_id");
+            for(i=0; i<product_id.length; i++){
+                if(product_id[i].value === picture_id){
+                    product_id[i].remove();
+                }
+            }
+        }
+        
     }
 
     delete_images();
 }
 
-//Al editar productos... cuando se sube una imagen queremos que se muestre antes de enviarla
+//Al editar productos... cuando se sube una imagen nueva queremos que se muestre antes de enviarla
 
 if(updatePicturesInput){
     //cuuando cambie el input
@@ -281,7 +300,7 @@ if(updatePicturesInput){
         }
 
         var new_image_id = "";
-        //Al hacer click a el boton eliminar
+        //Al hacer click a el boton eliminar se obtiene el id
         const new_delete_image_btn = document.getElementsByClassName("new_delete_image_btn");
         for(i=0; i<new_delete_image_btn.length; i++){
            new_delete_image_btn[i].addEventListener("click", function(){
@@ -289,16 +308,21 @@ if(updatePicturesInput){
                //console.log(this.nextElementSibling.firstElementChild);
                this.nextElementSibling.style.display = "none";
                new_image_id = this.nextElementSibling.firstElementChild.id;
-      
-               cc(new_image_id)
+                //pasamos el id a la funcion que va a eliminar dicha imagen del array images
+                rewrite_file_list(new_image_id)
            });
         }
 
-        function cc(new_image_id){
+        //Debemos eliminar del Element list del input tipe files (ell array images), la imagen a la que el usuario le de click en el btn cerrar
+        //basicamente lo que queremos es eliminar elementos del array images, y despues enviarle ese array sin los elementos eliminados al fileList
+        //osea a los files del input updatePicturesInput.files = dataTransfer.files; ya que no es posible editar el file List hay que volverlo a enviar completo
+        
+        function rewrite_file_list(new_image_id){
            for(i of images){
               if(i.id == new_image_id){
                 images.splice(images.indexOf(i), 1);
                 const dataTransfer = new DataTransfer();
+                //Recorremos el array images
                 for(i=0; i<images.length; i++){
                     dataTransfer.items.add(new File(images, 'new car'));
                     updatePicturesInput.files = dataTransfer.files;
@@ -306,14 +330,9 @@ if(updatePicturesInput){
               }
            }
         }
-        cc();
+        rewrite_file_list();
     });
 }
-
-
-
-
-
 
 
 

@@ -101,8 +101,8 @@
                     <div style="width: 200px;" class="existing_img_container">
                         <img class="w-100" src="../upload/<%= i.file_name %>" alt="">
                     </div>
-                    <!-- images to delete -->
-                    <input id="product_id" type="hidden" value="<%= i._id %>">
+                    <!-- todas las imagenes que vienenne de la bd -->
+                    <input name="existing_pictures" id="product_id" class="product_id" type="hidden" value="<%= i._id %>">
                 <% } %>   
             </div> 
             <div class="container mt-5 mb-5">
