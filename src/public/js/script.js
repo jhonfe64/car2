@@ -43,7 +43,10 @@ if(carousel_items.length > 0){
     carousel_items[0].classList.add("active");
 }
 
-var headerHeight = headers[0].clientHeight;
+if(headers[0]){
+    var headerHeight = headers[0].clientHeight;
+}
+
 
 
 if(headers.length>0){
@@ -189,16 +192,16 @@ if(model_filter){
     const ajax_consult = (car_info) => {
     var brand = car_info[0];
     var model = car_info[1];
-    
+
     $.get('/product/filters/'+ brand + "/" + model)
     .done(data =>{
 
         console.log(data);
-        
+
         // model_filter_option_disabled = document.createElement("option");
         // model_filter_option_disabled.setAttribute("disabled", "");
         // model_filter_option_disabled.setAttribute("selected", "");
-        // model_filter_option_disabled.innerHTML = "Seleccione un modelo"; 
+        // model_filter_option_disabled.innerHTML = "Seleccione un modelo";
         // model_filter.appendChild(model_filter_option_disabled);
         all_models = [];
         if(data.length > 0){
@@ -236,12 +239,12 @@ if(delete_image){
         for(i=0; i<delete_image.length; i++){
             delete_image[i].addEventListener("click", function(){
                 this.style.display = "none";
-                this.nextElementSibling.style.display = "none";  
+                this.nextElementSibling.style.display = "none";
                 //cada una de las magenes que se cargan de la bd guarda su id en un input tipe hidden update products.ejs linea 105
                 //al hacer click sobre el btn x obtengo el value de esa imagen que es el id de la imagen a eliminar
                 let picture_id = this.nextElementSibling.nextElementSibling.value;
                 //tomo el id de esa imagen y creo otro input para cada imagen que se va a eliminar con name = picture_id
-                //con eso {picture_id} = req.body, me mostrara las ids de las imagenes a eliminar 
+                //con eso {picture_id} = req.body, me mostrara las ids de las imagenes a eliminar
                 const new_imput = document.createElement("input");
                 new_imput.setAttribute("type", "hidden");
                 new_imput.setAttribute("name", "picture_id");
@@ -249,7 +252,7 @@ if(delete_image){
                 update_product_information.appendChild(new_imput);
                 //enviamos las ids de las imagenes que se vana  resubir
                 remove_existing_image(picture_id);
-                
+
             });
         }
 
@@ -262,7 +265,7 @@ if(delete_image){
                 }
             }
         }
-        
+
     }
 
     delete_images();
@@ -283,20 +286,20 @@ if(updatePicturesInput){
             //le creamos el atributo id a cada file con el valor random_id
             images[i].id = random_id;
             //console.log(images[i]);
-    
+
             const objectUrl = URL.createObjectURL(images[i]);
             //creando el btn x para elimnar la imagen
             let close_button = document.createElement("a");
             close_button.classList.add("new_delete_image_btn");
             close_button.innerHTML = "<span class='text-danger'><i class='fas fa-times-circle'></i><span>"
-            
+
             //Ceando un div para mostar la imagen
             let new_car =  document.createElement("div");
             new_car.setAttribute("style", "width: 200px")
             new_car.setAttribute("class", "existing_img_container");
             new_car.innerHTML = `<img class="w-100" src=${objectUrl} id="${random_id}">`;
             cars_images.appendChild(close_button);
-            cars_images.appendChild(new_car);            
+            cars_images.appendChild(new_car);
         }
 
         var new_image_id = "";
@@ -316,7 +319,7 @@ if(updatePicturesInput){
         //Debemos eliminar del Element list del input tipe files (ell array images), la imagen a la que el usuario le de click en el btn cerrar
         //basicamente lo que queremos es eliminar elementos del array images, y despues enviarle ese array sin los elementos eliminados al fileList
         //osea a los files del input updatePicturesInput.files = dataTransfer.files; ya que no es posible editar el file List hay que volverlo a enviar completo
-        
+
         function rewrite_file_list(new_image_id){
            for(i of images){
               if(i.id == new_image_id){
@@ -340,10 +343,46 @@ function delete_images_ajax(){
     const id = product_id.value;
 }
 
+//SignIn page
+
+if(window.location.href === "http://localhost:3000/signIn"){
+    let signIn_body =  document.getElementsByTagName('body')[0];
+    signIn_body.classList.add("signInbody");
+    console.log(signIn_body);
+}else{
+    location.replace("https://www.w3schools.com")
+}
+
+var emailSignUp = document.getElementsByClassName("email")[0];
+var passwordSignUp = document.getElementsByClassName("password")[0];
 
 
+if(emailSignUp){
+    emailSignUp.addEventListener("input", function(){
+        var envelope = document.getElementsByClassName("envelope")[0];
+        envelope.classList.add("text-primary");
+        envelope.style.transition = "1s"
 
+        if(emailSignUp.value.length < 1){
+            envelope.classList.remove("text-primary");
+            envelope.style.transition = "1.2s";
+        }
+    });
+    
+}
 
+if(passwordSignUp){
+    passwordSignUp.addEventListener("input", function(){
+        var key = document.getElementsByClassName("key")[0];
+        key.classList.add("text-primary");
+        key.style.transition = "1.2s";
+
+        if(passwordSignUp.value.length < 1){
+            key.classList.remove("text-primary");
+            key.style.transition = "1s";
+        }
+    });
+}
 
 
 

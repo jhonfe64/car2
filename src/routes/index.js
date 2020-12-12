@@ -3,6 +3,8 @@ const router = express.Router();
 const home = require('../controllers/home');
 const newProduct = require('../controllers/newProduct');
 const edit_products = require('../controllers/edit_products');
+const user = require('../controllers/user');
+
 
 
 module.exports = function(app){
@@ -19,18 +21,14 @@ module.exports = function(app){
     //==>muetra cada uno de los modelos al hacer click sobre seleccionar marca solo ajax => busqueda del index
     router.post('/model/:brand', home.model);
     //===> Trae la cantidad de autos correspondientes al modelo ajax => busqueda del index
-    router.post('/model/quantity/:quantity', home.model_quantity); 
+    router.post('/model/quantity/:quantity', home.model_quantity);
     //===> /product/searching
     router.post('/product/searching', home.product_searching);
-
-
 
     //===> filtros
     // router.get('/product/searching/:brand/:model', newProduct.filters);
     router.get('/product/filters/:brand/:model', newProduct.filters);
 
-
-  
     // ===> Borrando los productos subidos
     router.get('/deleteProduct/:id', /*edit_produts.n,*/ edit_products.delete);
     // ===> Esta ruta me trae todos los carros para ser editados 
@@ -39,6 +37,10 @@ module.exports = function(app){
     router.get('/updateProduct/:id', edit_products.updateProduct);
     // ===> Ruta que permite enviar los nuevos datos para actualizar el producto
     router.post('/updateProduct/:id', edit_products.saveEditProducts);
+
+
+     //===> mostrando el form de inicio de sesion
+    router.get('/signIn', user.signIn);
 
     app.use(router);
 }

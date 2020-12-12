@@ -16,7 +16,7 @@ ctrl.allproducts = async(req, res)=>{
     let all_cars = await productInfo.find().populate('image').sort();
     res.render('all_products', {all_cars: all_cars});
 }
-    
+
 //Borrando el producto completo de los 2 modelos y las imagenes de la carpeta
 ctrl.delete = async (req, res) => {    
     const id = req.params.id;

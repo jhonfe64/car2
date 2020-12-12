@@ -17,13 +17,13 @@ ctrl.index = async (req, res) => {
     //recorremos el arreglo
     for(i of brand){
         //obtenemos la marca
-       let single_brand = i.brand;
-       //enviamos la marca al array 
-       brands.push(single_brand);
+        let single_brand = i.brand;
+       //enviamos la marca al array
+        brands.push(single_brand);
        //aplicamos un new set all array brands para asegurarnos de eliminar los elementos repetidos de un array
        //y enviamos a la variable vacia no_buplicated_brand
-       no_buplicated_brand  = new Set(brands);
-    } 
+        no_buplicated_brand  = new Set(brands);
+    }
     if(no_buplicated_brand ){
         //e la variable resul arme otra vez el array con los datos de no_buplicated_brand]
         result = [...no_buplicated_brand];        
@@ -65,7 +65,6 @@ ctrl.model_quantity = async (req, res)=>{
     if(car_model_quantity){
         res.send({car_model_quantity});
     }
-    
 }
 
 //===> Envia los datos del from de busqueda del home index osea la marca y el modelo
