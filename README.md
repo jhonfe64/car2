@@ -5,9 +5,6 @@
 this web application for selling second hand cars allows to sign up neww users, they can send messages to the admin, and get messages in their own profiles, andmin can create update
 and delete products
 
-This api rest for deliveries allows sign up new users, create orders, edit orders, and cancel them, also allows to sign up admins, edit and delete them, by a super admin, users with rol admin and super admin can create, edit, and delete products.
-
-
 ### This project use the followig tecnologies
 
 1. nodejs
