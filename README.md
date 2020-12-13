@@ -21,6 +21,7 @@ and delete products
 4. multer
 5. nodemon
 6. uuid
+7. bcrypt
 
 ### To clone the repository and run it please follow this instructions
 
