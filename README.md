@@ -34,9 +34,7 @@ and delete products
 Make sure to install mongoose.
 type on vsc console => cd car2 and cd src //to get into the folders
 type nodemon index // to run the server
-##
+
 ![](https://github.com/jhonfe64/car2/blob/master/c21.jpg?raw=true)
-##
 ![](https://github.com/jhonfe64/car2/blob/master/c22.jpg?raw=true)
-##
 ![](https://github.com/jhonfe64/car2/blob/master/c23.jpg?raw=true)
