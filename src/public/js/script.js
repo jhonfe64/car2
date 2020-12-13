@@ -343,15 +343,14 @@ function delete_images_ajax(){
     const id = product_id.value;
 }
 
-//SignIn page
+//LogIn page
 
-if(window.location.href === "http://localhost:3000/signIn"){
+
+if(window.location.pathname.includes("/logIn")){
     let signIn_body =  document.getElementsByTagName('body')[0];
     signIn_body.classList.add("signInbody");
-    console.log(signIn_body);
-}else{
-    location.replace("https://www.w3schools.com")
 }
+
 
 var emailSignUp = document.getElementsByClassName("email")[0];
 var passwordSignUp = document.getElementsByClassName("password")[0];
@@ -361,14 +360,14 @@ if(emailSignUp){
     emailSignUp.addEventListener("input", function(){
         var envelope = document.getElementsByClassName("envelope")[0];
         envelope.classList.add("text-primary");
-        envelope.style.transition = "1s"
+        envelope.style.transition = "2s"
 
         if(emailSignUp.value.length < 1){
             envelope.classList.remove("text-primary");
-            envelope.style.transition = "1.2s";
+            envelope.style.transition = "2s";
         }
     });
-    
+
 }
 
 if(passwordSignUp){
@@ -383,6 +382,19 @@ if(passwordSignUp){
         }
     });
 }
+
+
+//SignUp page
+
+
+if(window.location.pathname.includes("/signUp")){
+    let signIn_body =  document.getElementsByTagName('body')[0];
+    signIn_body.classList.add("signUpBody");
+}
+
+
+
+
 
 
 

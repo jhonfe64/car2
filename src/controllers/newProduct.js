@@ -58,30 +58,29 @@ ctrl.uploadImage = async (req, res) => {
                 });
                 res.redirect('/newProduct');
             }
-    
         } 
-        //insertamos la info de la imagen en el modelo 
+        //insertamos la info de la imagen en el modelo
         if(valid_extentions.length >= 1){
             const newImageInfo = new productInfo({
-                brand: req.body.brand,
-                model: req.body.model,
-                color: req.body.color,
+                brand: req.body.brand.toLowerCase().trim(),
+                model: req.body.model.toLowerCase().trim(),
+                color: req.body.color.toLowerCase().trim(),
                 image: images_ids,
-                mileaje: req.body.mileaje,
-                price: req.body.price,
-                transmision: req.body.transmision,
-                cylinder_capacity: req.body.cylinder_capacity,
-                seats: req.body.seats,
-                gears: req.body.gears,
+                mileaje: req.body.mileaje.trim(),
+                price: req.body.price.trim(),
+                transmision: req.body.transmision.toLowerCase().trim(),
+                cylinder_capacity: req.body.cylinder_capacity.trim(),
+                seats: req.body.seats.toLowerCase().trim(),
+                gears: req.body.gears.trim(),
                 plates: req.body.plates,
-                fuelType: req.body.fuelType,
-                keys: req.body.keys,
-                rims: req.body.rims,
-                max_vel: req.body.max_vel,
-                gun: req.body.gun,
-                tank: req.body.tank,
-                hp: req.body.hp,
-                description: req.body.description,
+                fuelType: req.body.fuelType.toLowerCase().trim(),
+                keys: req.body.keys.trim(),
+                rims: req.body.rims.toLowerCase().trim(),
+                max_vel: req.body.max_vel.trim(),
+                gun: req.body.gun.trim(),
+                tank: req.body.tank.trim(),
+                hp: req.body.hp.trim(),
+                description: req.body.description.trim(),
                 isofix: req.body.isofix,
                 abs: req.body.abs,
                 fa: req.body.fa,
@@ -103,10 +102,8 @@ ctrl.uploadImage = async (req, res) => {
             images_ids = []
             res.redirect('/newProduct');
         }
-      
         console.log("producto agregado correctamente");
     }
-    
     save_img();
 
 }

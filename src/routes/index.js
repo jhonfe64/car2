@@ -4,6 +4,7 @@ const home = require('../controllers/home');
 const newProduct = require('../controllers/newProduct');
 const edit_products = require('../controllers/edit_products');
 const user = require('../controllers/user');
+const user_middlewares = require('../middlewares/user_middlewares');
 
 
 
@@ -40,7 +41,23 @@ module.exports = function(app){
 
 
      //===> mostrando el form de inicio de sesion
-    router.get('/signIn', user.signIn);
+    router.get('/logIn', user.logIn);
+
+
+    //===> mostrando el form de registro
+    router.get('/signUp', user.signUp);
+
+    //===> Insertando info de registro
+    router.post('/signUp', [user_middlewares.validate_fields, user_middlewares.validateNewUser],  user.sigUpData);
+
+
+
+
+
+    router.use((req, res, next)=>{
+        res.send("no existe esta pagina");
+        next();
+    })
 
     app.use(router);
 }

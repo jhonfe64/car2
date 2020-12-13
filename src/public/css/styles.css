@@ -174,7 +174,7 @@ footer a:hover {
     background-color: black;
 }
 
-.signInbody .signIn_container {
+.signIn_container {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -182,29 +182,43 @@ footer a:hover {
 }
 
 
-.signInbody .signIn_container h1 {
+.signIn_container h1 {
     color:#ecf0f1;
     font-size: 2rem;
 }
 
-.signInbody .signIn_container input {
+.signIn_container input {
     background: none;
     border: 0;
-    color: white;
-    border-bottom: 1px solid grey;
+    color: white !important;
+    border-bottom: 1px solid #ecf0f1;
 }
 
-.signInbody .signIn_container svg {
-    color: grey;
+.signIn_container svg {
+    color: #ecf0f1;
+    width: 28px;
+    height: 28px;
 }
 
-.signInbody .signIn_container input:focus {
+.signIn_container input:focus {
     outline: 0 none;
     box-shadow: none;
+    color: #ffffff;
+    border-color: white;
 }
 
-.signInbody .signIn_container button {
-    
+
+/*====================================
+ SIGN IN PAGE
+===================================== */
+
+.signUpBody {
+    background-image: url('../img/porshe3.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-color: black;
 }
 
 
