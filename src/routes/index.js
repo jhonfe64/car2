@@ -4,7 +4,9 @@ const home = require('../controllers/home');
 const newProduct = require('../controllers/newProduct');
 const edit_products = require('../controllers/edit_products');
 const user = require('../controllers/user');
+const profile = require('../controllers/profile');
 const user_middlewares = require('../middlewares/user_middlewares');
+const passport = require('passport');
 
 
 
@@ -32,24 +34,29 @@ module.exports = function(app){
 
     // ===> Borrando los productos subidos
     router.get('/deleteProduct/:id', /*edit_produts.n,*/ edit_products.delete);
-    // ===> Esta ruta me trae todos los carros para ser editados 
+    // ===> Esta ruta me trae todos los carros para ser editados
     router.get('/getCars', edit_products.allproducts);
     // ===> Ruta para traer el form de actaulizar producto y colocar info en el
     router.get('/updateProduct/:id', edit_products.updateProduct);
     // ===> Ruta que permite enviar los nuevos datos para actualizar el producto
     router.post('/updateProduct/:id', edit_products.saveEditProducts);
 
-
-     //===> mostrando el form de inicio de sesion
+    //===> mostrando el form de inicio de sesion
     router.get('/logIn', user.logIn);
 
+    //===> ruta de autenticacion de usuarios inicio de sesión
+    router.post('/logIn', passport.authenticate('local', {
+        successRedirect: "/profile",
+        failureRedirect: "/logIn",
+        failureFlash: true
+    }));
 
     //===> mostrando el form de registro
     router.get('/signUp', user.signUp);
-
     //===> Insertando info de registro
-    router.post('/signUp', [user_middlewares.validate_fields, user_middlewares.validateNewUser],  user.sigUpData);
-
+    router.post('/signUp', [user_middlewares.validate_fields, user_middlewares.validateNewUser, user_middlewares.validateEmail],  user.sigUpData);
+    //===> mostrando la vista de perfil 
+    router.get('/profile', profile.showProfile)
 
 
 

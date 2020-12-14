@@ -2,22 +2,28 @@
 <div class="container signIn_container">
     <div class="row d-flex justify-content-center w-100">
         <div class="col-12 col-md-8 form_container">
-            <h1 class="mb-5">Iniciar sesión</h1>
-            <form class="mb-5">
+            <h1 class="mb-5 d-flex justify-content-between">Iniciar sesión
+                <a href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left text-primary" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+                    </svg>
+                </a>
+            </h1>
+            <form class="mb-5" action="/logIn" method="POST">
                 <div class="form-group d-flex align-items-end">
                     <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-envelope envelope mr-3" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
                     </svg>
-                    <input placeholder="Ingrese su email" type="email" class="form-control rounded-0 email bg-transparent" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input autocomplete="off" placeholder="Ingrese su email" name="email" type="email" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group d-flex align-items-end">
                     <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-key mr-3 key" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
                         <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                     </svg>
-                    <input placeholder="Ingrese su contraseña" type="password" class="form-control rounded-0 password bg-transparent" id="exampleInputPassword1">
+                    <input autocomplete="off" name="password" placeholder="Ingrese su contraseña" type="password" class="form-control password" id="exampleInputPassword1">
                 </div>
-                <button type="button" class="btn btn-primary w-100 rounded-0 mt-3">Enviar</button>
+                <button class="btn btn-primary w-100 rounded-0 mt-3">Enviar</button>
             </form>
         </div>
     </div>

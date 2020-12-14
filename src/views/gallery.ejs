@@ -6,10 +6,10 @@
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                         <% for(i of product_gallery.image){ %> 
-                          <div class="carousel-item car_carousel_item">
+                            <div class="carousel-item car_carousel_item">
                             <img class="d-block w-100" src="/upload/<%= i.file_name %>" alt="First slide">
-                          </div>
-                          <% if(product_gallery.image.length > 1) { %>
+                            </div>
+                        <% if(product_gallery.image.length > 1) { %>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                             <span  aria-hidden="true" class="slider_controllers">
                                 <i class="fas fa-arrow-left"></i>
@@ -21,9 +21,9 @@
                                     <i class="fas fa-arrow-right"></i>
                                 </span>
                                 <span class="sr-only">Next</span>
-                            </a> 
-                            <% } %> 
-                        <% } %> 
+                            </a>
+                            <% } %>
+                        <% } %>
                         </div>
                             <div class="col-12 d-flex justify-content-center">
                                 <a href="/product/<%=product_gallery._id %>" class="btn btn-dark d-block pr-5 pl-5">
@@ -33,7 +33,7 @@
                                     Regresar
                                 </a>
                             </div>
-                        </div>      
+                        </div>
                       </div>
                 </div>  
         </div>

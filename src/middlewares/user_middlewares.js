@@ -7,7 +7,6 @@ ctrl.validate_fields = (req, res, next) => {
     const {name_lastname, email, phone_number, password} = req.body;
     if(!name_lastname || !email || !phone_number || !password){
         console.log("todos los campos son obligatorios");
-        res.redirect('/signUp');
     }else{
         next();
     }
@@ -37,6 +36,18 @@ ctrl.validateNewUser = async (req, res, next) => {
     }else{
         next();
     }
+}
+
+//validar si el email ya existe
+ctrl.validateEmail = async (req, res, next)=>{
+    const {email} = req.body;
+    const all_users = await Users.findOne({'email': new RegExp(email)});
+   if(all_users){
+       console.log(`el correo ${all_users.email} ya está registrado`);
+       res.redirect('/signUp')
+   }else{
+       next();
+   }
 }
 
 

@@ -321,17 +321,17 @@ if(updatePicturesInput){
         //osea a los files del input updatePicturesInput.files = dataTransfer.files; ya que no es posible editar el file List hay que volverlo a enviar completo
 
         function rewrite_file_list(new_image_id){
-           for(i of images){
-              if(i.id == new_image_id){
-                images.splice(images.indexOf(i), 1);
-                const dataTransfer = new DataTransfer();
-                //Recorremos el array images
-                for(i=0; i<images.length; i++){
-                    dataTransfer.items.add(new File(images, 'new car'));
-                    updatePicturesInput.files = dataTransfer.files;
+            for(i of images){
+                if(i.id == new_image_id){
+                    images.splice(images.indexOf(i), 1);
+                    const dataTransfer = new DataTransfer();
+                    //Recorremos el array images
+                        for(i=0; i<images.length; i++){
+                        dataTransfer.items.add(new File(images, 'new car'));
+                        updatePicturesInput.files = dataTransfer.files;
+                    }
                 }
-              }
-           }
+            }
         }
         rewrite_file_list();
     });
@@ -347,40 +347,41 @@ function delete_images_ajax(){
 
 
 if(window.location.pathname.includes("/logIn")){
-    let signIn_body =  document.getElementsByTagName('body')[0];
-    signIn_body.classList.add("signInbody");
-}
+    let signIn_body = document.getElementsByTagName('body')[0];
+    console.log(signIn_body);
+    signIn_body.classList.add("signInBody");
+   
+    var emailSignUp = document.getElementsByClassName("email")[0];
+    var passwordSignUp = document.getElementsByClassName("password")[0];
 
 
-var emailSignUp = document.getElementsByClassName("email")[0];
-var passwordSignUp = document.getElementsByClassName("password")[0];
+    if(emailSignUp){
+        emailSignUp.addEventListener("input", function(){
+            var envelope = document.getElementsByClassName("envelope")[0];
+            envelope.classList.add("text-primary");
+            envelope.style.transition = "2s"
 
+            if(emailSignUp.value.length < 1){
+                envelope.classList.remove("text-primary");
+                envelope.style.transition = "2s";
+            }
+        });
 
-if(emailSignUp){
-    emailSignUp.addEventListener("input", function(){
-        var envelope = document.getElementsByClassName("envelope")[0];
-        envelope.classList.add("text-primary");
-        envelope.style.transition = "2s"
+    }
 
-        if(emailSignUp.value.length < 1){
-            envelope.classList.remove("text-primary");
-            envelope.style.transition = "2s";
-        }
-    });
+    if(passwordSignUp){
+        passwordSignUp.addEventListener("input", function(){
+            var key = document.getElementsByClassName("key")[0];
+            key.classList.add("text-primary");
+            key.style.transition = "1.2s";
 
-}
+            if(passwordSignUp.value.length < 1){
+                key.classList.remove("text-primary");
+                key.style.transition = "1s";
+            }
+        });
+    }
 
-if(passwordSignUp){
-    passwordSignUp.addEventListener("input", function(){
-        var key = document.getElementsByClassName("key")[0];
-        key.classList.add("text-primary");
-        key.style.transition = "1.2s";
-
-        if(passwordSignUp.value.length < 1){
-            key.classList.remove("text-primary");
-            key.style.transition = "1s";
-        }
-    });
 }
 
 
@@ -388,9 +389,22 @@ if(passwordSignUp){
 
 
 if(window.location.pathname.includes("/signUp")){
-    let signIn_body =  document.getElementsByTagName('body')[0];
-    signIn_body.classList.add("signUpBody");
+    let signUp_body =  document.getElementsByTagName('body')[0];
+    signUp_body.classList.add("signUpBody");
+
+    let signUpInputs =  document.getElementsByTagName("input");
+    for(i=0; i<signUpInputs.length; i++){
+        signUpInputs[i].addEventListener("input", function(){
+            this.previousElementSibling.classList.add('text-primary');
+            this.previousElementSibling.style.transition = "1.2s";
+            if(this.value.length < 1){
+                this.previousElementSibling.classList.remove('text-primary');
+            }
+        });
+    }
 }
+
+
 
 
 

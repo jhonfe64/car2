@@ -160,12 +160,11 @@ footer a:hover {
     font-weight: 600;
 }
 
-
 /*====================================
  SIGN IN PAGE
 ===================================== */
 
-.signInbody {
+.signInBody{
     background-image: url('../img/porshe2.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -191,8 +190,9 @@ footer a:hover {
     background: none;
     border: 0;
     color: white !important;
-    border-bottom: 1px solid #ecf0f1;
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
 
 .signIn_container svg {
     color: #ecf0f1;
@@ -205,6 +205,7 @@ footer a:hover {
     box-shadow: none;
     color: #ffffff;
     border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 
@@ -229,16 +230,14 @@ footer a:hover {
     nav ul li:last-child {
         border-bottom: none;
     }
-    
     .more_viewed_card {
         width: 45%;
     }
 
-  }
-  
+}
 
-  @media only screen and (max-width: 768px) {
-    .jumbo_promotion form select,.searching_btn  {
+@media only screen and (max-width: 768px) {
+    .jumbo_promotion form select,.searching_btn{
         width: 100%;
         margin-bottom: 20px;
     }
@@ -251,4 +250,4 @@ footer a:hover {
     .more_viewed_card {
         width: 100%;
     }
-  }
+}

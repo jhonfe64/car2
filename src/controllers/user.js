@@ -27,13 +27,10 @@ ctrl.sigUpData = async(req, res) => {
 
     const newUserSaved = newUser.save();
     if(newUserSaved){
-        res.redirect('/');
+        res.redirect('/logIn');
     }
 }
 
-// User.find().then((res)=>{
-//     console.log(res);
-// })
 
 
 
