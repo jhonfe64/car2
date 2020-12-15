@@ -22,7 +22,7 @@ ctrl.sigUpData = async(req, res) => {
         name_lastname: name_lastname.toLowerCase().trim(),
         email: email.toLowerCase().trim(),
         phone_number: phone_number.trim(),
-        password: encripted_password.trim()
+        password: encripted_password
     })
 
     const newUserSaved = newUser.save();

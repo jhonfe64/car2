@@ -127,7 +127,7 @@ ctrl.view_single_product = async(req, res) => {
         single_product.save();
         res.render('../views/single_product', {single_product: single_product});
     }else{
-         console.log("not found");
+        console.log("not found");
     }
 }
 

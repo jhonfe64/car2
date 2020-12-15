@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 passport.use(new localStrategy({
     usernameField: 'email',
 }, async (email, password, done)=>{
+    email = email.toLocaleLowerCase();
     //encuentre donde el campo email del modlo sea igual a el email del usuario
     const user = await Users.findOne({'email': email});
     //si no encontro usuario con ese email

@@ -6,6 +6,7 @@ const edit_products = require('../controllers/edit_products');
 const user = require('../controllers/user');
 const profile = require('../controllers/profile');
 const user_middlewares = require('../middlewares/user_middlewares');
+const messages = require('../controllers/messages');
 const passport = require('passport');
 
 
@@ -55,11 +56,12 @@ module.exports = function(app){
     router.get('/signUp', user.signUp);
     //===> Insertando info de registro
     router.post('/signUp', [user_middlewares.validate_fields, user_middlewares.validateNewUser, user_middlewares.validateEmail],  user.sigUpData);
-    //===> mostrando la vista de perfil 
+    //===> mostrando la vista de perfil
     router.get('/profile', profile.showProfile)
 
 
-
+    //===> Mensajes del modal para el admin
+    router.post('/messages', messages.admin_messages);
 
     router.use((req, res, next)=>{
         res.send("no existe esta pagina");

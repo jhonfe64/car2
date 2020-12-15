@@ -22,10 +22,10 @@ ctrl.validateNewUser = async (req, res, next) => {
         const {name_lastname, phone_number, email, password} = req.body;
         const encripted_password = bcrypt.hashSync(password, 10);
         const newUser = new Users({
-            name_lastname: name_lastname.trim(),
+            name_lastname: name_lastname.toLowerCase().trim(),
             phone_number: phone_number.trim(),
-            password: encripted_password.trim(),
-            email: email.trim(),
+            password: encripted_password,
+            email: email.toLowerCase().trim(),
             role: 'superAdmin'
         });
 
