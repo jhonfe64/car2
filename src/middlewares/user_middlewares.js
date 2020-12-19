@@ -2,11 +2,25 @@ const ctrl = {}
 const Users = require('../models/users');
 const bcrypt =  require('bcrypt');
 
-//validar campos
+
+//validar campos registro de usuarios
 ctrl.validate_fields = (req, res, next) => {
-    const {name_lastname, email, phone_number, password} = req.body;
-    if(!name_lastname || !email || !phone_number || !password){
-        console.log("todos los campos son obligatorios");
+    const {name_lastname, email, phone_number, password, first_password} = req.body;
+    if(!name_lastname || !email || !phone_number || !password || !first_password){
+        req.flash('message', 'Todos los campos son obligatorios');
+        res.redirect('/signUp');
+    }else{
+        next();
+    }
+}
+
+//vaidar campos inicio sesion
+
+ctrl.validate_fields_logIn = (req, res, next) => {
+    const {email, password} = req.body
+    if(!email || !password){
+        req.flash('message', 'los campos son obligatorios');
+        res.redirect('/logIn');
     }else{
         next();
     }
@@ -42,13 +56,18 @@ ctrl.validateNewUser = async (req, res, next) => {
 ctrl.validateEmail = async (req, res, next)=>{
     const {email} = req.body;
     const all_users = await Users.findOne({'email': new RegExp(email)});
-   if(all_users){
-       console.log(`el correo ${all_users.email} ya está registrado`);
-       res.redirect('/signUp')
-   }else{
-       next();
-   }
+    if(all_users){
+        req.flash('message', `el correo ${all_users.email} ya esta registrado`);
+        res.redirect('/signUp')
+    }else{
+        next();
+    }
 }
+
+
+
+//validar el rol de la perssona que inicia sesion
+
 
 
 module.exports = ctrl;

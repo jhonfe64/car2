@@ -24,6 +24,9 @@
                     <input autocomplete="off" name="password" placeholder="Ingrese su contraseña" type="password" class="form-control password" id="exampleInputPassword1">
                 </div>
                 <button class="btn btn-primary w-100 rounded-0 mt-3">Enviar</button>
+               <% if(message){ %>
+                    <%-include('partials/alerts') %>          
+                <% } %>    
             </form>
         </div>
     </div>

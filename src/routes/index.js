@@ -15,9 +15,9 @@ module.exports = function(app){
     //==>shows index home page
     router.get('/', home.index);
     //==>show page to upload new product
-    router.get('/newProduct', newProduct.product);
+    router.get('/newProduct', profile.Islogged, newProduct.product);
     //==>procesa la info del nuevo producto
-    router.post('/create', newProduct.uploadImage);
+    router.post('/create', profile.Islogged, newProduct.uploadImage);
     //==>muestra el producto al hacer click sobre el btn ver mas
     router.get('/product/:id', newProduct.view_single_product);
     //==>muestra la galería de cada producto
@@ -34,39 +34,44 @@ module.exports = function(app){
     router.get('/product/filters/:brand/:model', newProduct.filters);
 
     // ===> Borrando los productos subidos
-    router.get('/deleteProduct/:id', /*edit_produts.n,*/ edit_products.delete);
+    router.get('/deleteProduct/:id', profile.Islogged, /*edit_produts.n,*/ edit_products.delete);
     // ===> Esta ruta me trae todos los carros para ser editados
-    router.get('/getCars', edit_products.allproducts);
+    router.get('/getCars', profile.Islogged,  edit_products.allproducts);
     // ===> Ruta para traer el form de actaulizar producto y colocar info en el
-    router.get('/updateProduct/:id', edit_products.updateProduct);
+    router.get('/updateProduct/:id', profile.Islogged, edit_products.updateProduct);
     // ===> Ruta que permite enviar los nuevos datos para actualizar el producto
-    router.post('/updateProduct/:id', edit_products.saveEditProducts);
-
-    //===> mostrando el form de inicio de sesion
-    router.get('/logIn', user.logIn);
-
-    //===> ruta de autenticacion de usuarios inicio de sesión
-    router.post('/logIn', passport.authenticate('local', {
-        successRedirect: "/profile",
-        failureRedirect: "/logIn",
-        failureFlash: true
-    }));
+    router.post('/updateProduct/:id', profile.Islogged, edit_products.saveEditProducts);
 
     //===> mostrando el form de registro
     router.get('/signUp', user.signUp);
     //===> Insertando info de registro
     router.post('/signUp', [user_middlewares.validate_fields, user_middlewares.validateNewUser, user_middlewares.validateEmail],  user.sigUpData);
+    //===> mostrando el form de inicio de sesion
+    router.get('/logIn', user.logIn);
+
+    //===> ruta de autenticacion de usuarios inicio de sesión
+    router.post('/logIn', user_middlewares.validate_fields_logIn,  passport.authenticate('local', {
+        successRedirect: "/",
+        failureRedirect: "/logIn",
+        failureFlash: true
+    }));
+
     //===> mostrando la vista de perfil
-    router.get('/profile', profile.showProfile)
+    router.get('/profile', profile.Islogged, profile.showProfile)
 
 
     //===> Mensajes del modal para el admin
-    router.post('/messages', messages.admin_messages);
+    router.post('/messages', profile.Islogged,  messages.admin_messages);
 
+    //===> cerrando sesion
+    router.get('/user/logout', user.logOut);
+
+    //Variables globales    
     router.use((req, res, next)=>{
+
         res.send("no existe esta pagina");
         next();
-    })
+    });
 
     app.use(router);
 }

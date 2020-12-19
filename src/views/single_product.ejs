@@ -11,7 +11,7 @@
                     <img class="img-fluid" src="../upload/<%=single_product.image[0].file_name %>" alt="">
                 </div>
                 <div class="d-flex">
-                    <a href="/product/gallery/<%= single_product._id %>" class="btn btn-dark rounded-0 col-5">Ver galería</a>
+                    <a href="/product/gallery/<%= single_product._id %>" class="btn btn-dark rounded-0 col-5">Ver galería</a>   
                     <button class="btn btn-warning rounded-0 col-7" data-toggle="modal" data-target="#exampleModal" >Contactar</button>
                 </div>
             </div>
@@ -363,10 +363,10 @@
         </div>
     </div>
     <!-- modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade pr-0"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
+                <div class="modal-header message_modal_header text-white pr-5 pl-5 pb-4 pt-4 bg-dark">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
@@ -376,8 +376,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="/messages" method="POST">
+                <div class="modal-body modal_content">
+                    <form class="p-4" action="/messages" method="POST">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nombres</label>
                             <input autocomplete="off" type="text" name="names" class="form-control" id="names">
@@ -395,10 +395,19 @@
                             <textarea class="form-control" id="message-text" name="userMessage"></textarea>
                         </div>
                         <!-- id del auto -->
-                        <input type="hidden" name="user_id" value="<%= single_product._id %>">
-                        <div class="modal-footer border-0">
-                            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button class="btn btn-primary">Send message</button>
+                        <input type="hidden" name="product_id" value="<%= single_product._id %>">
+                        <div class="modal-footer border-0 p-0">
+                            <% if(!user){ %>
+                                <div class="alert alert-primary w-100 m-0 rounded-0 mb-3 mt-3" role="alert">
+                                    Para enviar mensaje debe  <a href="/logIn">iniciar sesión</a>
+                                </div>
+                            <% } %>    
+                            <button class="btn btn-secondary rounded-0 pr-4 pl-4" data-dismiss="modal">Cerrar</button>
+                            <% if(user){ %>
+                                <button class="btn btn-warning rounded-0 pr-4 pl-4">Enviar mensaje</button>
+                            <% }else{ %>
+                                <button disabled class="btn btn-warning rounded-0 pr-4 pl-4 ">Enviar mensaje</button>
+                            <% } %>
                         </div>
                     </form>
                 </div>

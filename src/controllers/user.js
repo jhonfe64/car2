@@ -1,6 +1,6 @@
 const User = require('../models/users');
 const bcrypt = require('bcrypt');
-
+const passport = require('passport');
 
 const ctrl = {}
 
@@ -31,6 +31,10 @@ ctrl.sigUpData = async(req, res) => {
     }
 }
 
+ctrl.logOut = async (req, res) => {
+    req.logout();
+    res.redirect('/');
+}
 
 
 

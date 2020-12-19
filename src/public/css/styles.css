@@ -201,17 +201,13 @@ footer a:hover {
 }
 
 .signIn_container input:focus {
-    outline: 0 none;
+    outline: 0;
     box-shadow: none;
     color: #ffffff;
     border-color: white;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-
-/*====================================
- SIGN IN PAGE
-===================================== */
 
 .signUpBody {
     background-image: url('../img/porshe3.jpg');
@@ -221,6 +217,50 @@ footer a:hover {
     height: 100vh;
     background-color: black;
 }
+
+
+/*====================================
+Modal messages
+===================================== */
+
+.modal_content {
+    /* background-image: linear-gradient(to right,#41bdf0 , #3880c6, #3053a7); */
+    /* background-image: url('../img/carMessage.jpg'); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: black; */
+}
+
+.modal_content div input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ecf0f1;
+    border-radius: 0;
+}
+
+.modal_content div textarea {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ecf0f1;
+    height: 100px;
+    max-height: 150px;
+    border-radius: 0;
+} 
+
+
+
+.modal_content div input:focus {
+    background: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.modal_content div textarea:focus {
+    background: none;
+    outline: 0;
+    box-shadow: none;
+} 
 
 
 @media only screen and (max-width: 992px) {

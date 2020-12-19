@@ -149,18 +149,18 @@ ctrl.filters = async(req, res)=>{
     //req.params.model = "Suburban 2020";
     const brand = req.params.brand;
     const model = req.params.model;
-  
+
     let query = {};
-    
+
     // req.params.model = undefined si le pongin undefiend funciona;
 
-    
+
     if(brand !== "undefined"){ // preguntamos si existe brands
-      query['brand'] = new RegExp(req.params.brand);
+        query['brand'] = new RegExp(req.params.brand);
     }
-    
+
     if(model !== "undefined"){ // preguntamos si existe model
-       query['model'] = new RegExp(req.params.model);
+        query['model'] = new RegExp(req.params.model);
      }
     // siempre que se trabaja con Promesas se debe usar
     // un bloque try / catch

@@ -1,5 +1,95 @@
 <%-include('layouts/header', {title: 'home'}) %>
 <%-include('partials/menu') %> 
-<%-include('partials/user-menu') %> 
+<section class="container" style="margin-top: 200px;">
+    <div class="row">
+        <a href="/user/logout" class="text-right mb-4 text-dark font-weight-bold d-block w-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-left mr-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                </svg>
+            Cerrar sesión
+        </a>
+        <% if(user){ %>
+            <h3 class="mb-4">Hola <%=user.name_lastname%></h3>
+        <% } %>    
+        <div class="col-12 mb-5 bg-primary pt-3 pb-3">
+            <h1 class="text-white mb-0 w-100 d-flex justify-content-between align-items-center">Mis mensajes
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                </svg>
+            </h1>
+        </div>
+        <div class="col-12 col-md-3 justify-content-between  mb-4 mb-md-0">
+            <div class="d-block d-md-flex justify-content-between pt-2 pb-2">
+                <span class="mr-5  mr-md-0">Entrada</span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="d-block d-md-flex justify-content-between pt-2 pb-2">
+                <span class="mr-5  mr-md-0">Redactar</span>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Acciones</th>
+                        <th class="text-center" scope="col">De</th>
+                        <th class="text-center" scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center">
+                        <a href="#">
+                            <span class="text-danger"><i class="far fa-trash-alt"></i></span>
+                        </a>
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        Nombre
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        12/02/2021
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <a href="#">
+                            <span class="text-danger"><i class="far fa-trash-alt"></i></span>
+                        </a>
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        Nombre
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        12/02/2021
+                    </td>
+                    </tr>
+                    <tr>
+                    <td class="text-center">
+                        <a href="#">
+                            <span class="text-danger"><i class="far fa-trash-alt"></i></span>
+                        </a>
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        Nombre
+                    </td>
+                    <td class="text-center font-weight-bold">
+                        12/02/2021
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
 <%-include('layouts/footer') %>
