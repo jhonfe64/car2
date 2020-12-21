@@ -27,40 +27,49 @@ const cars_images = document.getElementById("cars_images");
 const message_info = document.getElementsByClassName("message_info");
 
 if(message_info){
- 
     for(i=0; i<message_info.length; i++){
         message_info[i].addEventListener("click", function(){
-        let names_lastname = this.children[1].innerHTML;
-        let user_message = this.children[5].value;
-        let product_id =  this.children[4].value;
+        const names_lastname = this.children[1].innerHTML;
+        const user_message = this.children[5].value;
+        const product_id =  this.children[4].value;
+        const messages_envelope = document.getElementsByClassName("messages_envelope")[0];
+        const messages_inbox = document.getElementsByClassName("messages_inbox")[0];
+        messages_envelope.classList.toggle("d-none");
+        messages_inbox.classList.toggle("d-block");
+        messages_inbox.addEventListener("click", function(){
+            window.location.reload();
+        });
 
-        $.post('/productById/'+ product_id)
-            .done(data=>{
-            console.log(data);
-         });
+            //encontrando el producto por id
+            $.post('/productById/'+ product_id)
+                .done(data=>{
+                let product_image = data.image[0].file_name;
+                console.log(product_image);
+                let car_brand = data.brand;
+                let car_model = data.model;
 
-
-
-            const messages_table = document.getElementById("messages_table");
-            messages_table.innerHTML = `
-            <h5 class="d-inline">De: </h5> ${names_lastname}
-            <h5 class="mt-2">producto: </h5>
-
-            <h5 class="mt-2">Mensaje: </h5>
-            <p class="mb-5 text-justify">
-                ${user_message}
-            </p>
-
-            <img src="" alt="">
-
-            <h3 class="mb-3">Responder este mensaje</h3>
-            <form>
-                <div class="form-group">
-                    <textarea class="form-control  text_area_min_height"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary pr-5 pl-5">Enviar</button>
-            </form>
-        `
+                const messages_table = document.getElementById("messages_table");
+                messages_table.innerHTML = `
+                <h4 class="mb-3">De:<span class="ml-2 capitalize">${names_lastname}</span></h4>
+                <h4 class="mb-3">Producto: </h4>
+                    <h5 class="mb-2">Marca: <span class="ml-2 capitalize">${car_brand}</span></h5> 
+                    <h5 class="mb-3">Modelo: <span class="ml-2 capitalize">${car_model}</span></h5>
+                    <div class="img-container mt-4 mb-4" style="width:350px">
+                        <img class="img-fluid rounded shadow-sm" src="../upload/${product_image}" alt="">
+                    </div>
+                <h4 class="mb-3">Mensaje: </h4>
+                <p class="mb-5 text-justify">
+                    ${user_message}
+                </p>
+                <h3 class="mb-3">Responder este mensaje</h3>
+                <form class="mb-5">
+                    <div class="form-group">
+                        <textarea class="form-control  text_area_min_height"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary pr-5 pl-5">Enviar</button>
+                </form>
+            `
+            });
         });
     }
 }

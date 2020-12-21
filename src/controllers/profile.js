@@ -44,7 +44,7 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
 
 ctrl.productById = async (req, res) =>{
     const product_id = req.params.product_id;
-    const product = await productInfo.findById(product_id);
+    const product = await productInfo.findById(product_id).populate('image');
     res.send(product);
 }
 

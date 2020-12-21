@@ -26,6 +26,15 @@ p {
 }
 
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+.link_cursor
+{
+    cursor: pointer;
+}
+
 /*====================================
  NAVBAR
 =====================================  */

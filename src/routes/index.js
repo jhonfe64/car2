@@ -62,8 +62,11 @@ module.exports = function(app){
     //===> Guardando los mensajes en el modelo de mansajes
     router.post('/messages', profile.Islogged,  messages.admin_messages);
 
-    //===> Trayendo la imagen del producto que el usuario envio por el form de contacto para mostrarla al admin a la hora de responder mensajes  profile.js
+    //===> Eliminando mesajes por id
 
+    router.get('/deletemessage/:id', messages.delete_message);
+
+    //===> Trayendo la imagen del producto que el usuario envio por el form de contacto para mostrarla al admin a la hora de responder mensajes  profile.js
     router.post('/productById/:product_id', profile.productById);
 
     //===> cerrando sesion
