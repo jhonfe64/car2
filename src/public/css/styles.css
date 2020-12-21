@@ -151,13 +151,39 @@ footer a:hover {
 ===================================== */
 
 
-.how_it_works {
-    margin-top: 100px;
-    margin-bottom: 100px;
+.how_it_works, .logos, .aditional_info, .logos {
+    margin-top: 90px;
+    margin-bottom: 90px;
 }
 
 .how_it_works h5{
     font-weight: 600;
+}
+
+.aditional_info {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    position: relative;
+}
+
+.aditional_info .aditional_info_background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    transform: skewY(-1deg);
+}
+
+/*===================================
+ LOGOS
+====================================*/
+
+.logos img {
+    width: 30%;
+    display: block;
+    margin: auto;
 }
 
 /*====================================
@@ -246,9 +272,7 @@ Modal messages
     height: 100px;
     max-height: 150px;
     border-radius: 0;
-} 
-
-
+}
 
 .modal_content div input:focus {
     background: none;
@@ -261,6 +285,11 @@ Modal messages
     outline: 0;
     box-shadow: none;
 } 
+
+.text_area_min_height {
+    min-height: 200px;
+    height: 200px;
+}
 
 
 @media only screen and (max-width: 992px) {

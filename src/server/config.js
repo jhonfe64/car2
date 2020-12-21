@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passport_authentication = require('../authentication/passport_authentication');
 const user_middlewares = require('../middlewares/user_middlewares');
+//const profile = require('../controllers/profile');
+const helpers = require('../helpers/index');
 const morgan = require('morgan');
 
 
@@ -37,7 +39,7 @@ module.exports = function(app){
 
     app.use(flash());
  
-    app.use(morgan('dev'));
+    // app.use(morgan('dev'));
 
 
     //Vaiables Globales
@@ -46,7 +48,10 @@ module.exports = function(app){
         app.locals.message = req.flash('message');
         console.log(app.locals.message);
         app.locals.user = req.user || null;
-        next();
+     
+        app.locals.helpers = helpers;
+        next();   
+
     });
     
 

@@ -56,19 +56,27 @@ module.exports = function(app){
         failureFlash: true
     }));
 
-    //===> mostrando la vista de perfil
-    router.get('/profile', profile.Islogged, profile.showProfile)
+    //===> mostrando la vista de perfil (mensajes del usuario que inicia sesión)
+    router.get('/profile', profile.Islogged, profile.validateSuperAdmin, /*profile.showProfile*/)
 
-
-    //===> Mensajes del modal para el admin
+    //===> Guardando los mensajes en el modelo de mansajes
     router.post('/messages', profile.Islogged,  messages.admin_messages);
+
+    //===> Trayendo la imagen del producto que el usuario envio por el form de contacto para mostrarla al admin a la hora de responder mensajes  profile.js
+
+    router.post('/productById/:product_id', profile.productById);
 
     //===> cerrando sesion
     router.get('/user/logout', user.logOut);
 
+
+
+
+
+
+
     //Variables globales    
     router.use((req, res, next)=>{
-
         res.send("no existe esta pagina");
         next();
     });

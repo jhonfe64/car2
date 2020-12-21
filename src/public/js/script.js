@@ -23,6 +23,54 @@ const update_info = document.getElementById('update_info');
 const updatePicturesInput = document.getElementById("updatePicturesInput");
 const cars_images = document.getElementById("cars_images");
 
+//formulario responder mensajes admin
+const message_info = document.getElementsByClassName("message_info");
+
+if(message_info){
+ 
+    for(i=0; i<message_info.length; i++){
+        message_info[i].addEventListener("click", function(){
+        let names_lastname = this.children[1].innerHTML;
+        let user_message = this.children[5].value;
+        let product_id =  this.children[4].value;
+
+        $.post('/productById/'+ product_id)
+            .done(data=>{
+            console.log(data);
+         });
+
+
+
+            const messages_table = document.getElementById("messages_table");
+            messages_table.innerHTML = `
+            <h5 class="d-inline">De: </h5> ${names_lastname}
+            <h5 class="mt-2">producto: </h5>
+
+            <h5 class="mt-2">Mensaje: </h5>
+            <p class="mb-5 text-justify">
+                ${user_message}
+            </p>
+
+            <img src="" alt="">
+
+            <h3 class="mb-3">Responder este mensaje</h3>
+            <form>
+                <div class="form-group">
+                    <textarea class="form-control  text_area_min_height"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary pr-5 pl-5">Enviar</button>
+            </form>
+        `
+        });
+    }
+}
+
+//perfil de usuario centro de mensajes
+
+
+
+
+
 
 
 
@@ -384,9 +432,7 @@ if(window.location.pathname.includes("/logIn")){
 
 }
 
-
 //SignUp page
-
 
 if(window.location.pathname.includes("/signUp")){
     let signUp_body =  document.getElementsByTagName('body')[0];

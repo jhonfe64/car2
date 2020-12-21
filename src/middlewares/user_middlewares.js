@@ -66,8 +66,5 @@ ctrl.validateEmail = async (req, res, next)=>{
 
 
 
-//validar el rol de la perssona que inicia sesion
-
-
 
 module.exports = ctrl;

@@ -2,8 +2,14 @@
 <%-include('partials/menu') %>
 
 
+   
 <% if(single_product){ %>
     <div class="container new_page">
+        <div class="mb-3">
+            <% if(message){ %>
+                <%-include('partials/alerts') %>          
+            <% } %>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-7">
                 <h4 class="mb-4"><%= single_product.brand %> <%= single_product.model %></h4>
@@ -396,6 +402,10 @@
                         </div>
                         <!-- id del auto -->
                         <input type="hidden" name="product_id" value="<%= single_product._id %>">
+                        <!-- id del usuario que inicia sesión -->
+                        <% if(user){ %>
+                            <input type="hidden" name="user_id" value="<%= user._id %>">
+                        <% } %>    
                         <div class="modal-footer border-0 p-0">
                             <% if(!user){ %>
                                 <div class="alert alert-primary w-100 m-0 rounded-0 mb-3 mt-3" role="alert">

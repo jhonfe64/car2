@@ -19,73 +19,34 @@
                 </svg>
             </h1>
         </div>
-        <div class="col-12 col-md-3 justify-content-between  mb-4 mb-md-0">
-            <div class="d-block d-md-flex justify-content-between pt-2 pb-2">
-                <span class="mr-5  mr-md-0">Entrada</span>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
-                    </svg>
-                </span>
-            </div>
-            <div class="d-block d-md-flex justify-content-between pt-2 pb-2">
-                <span class="mr-5  mr-md-0">Redactar</span>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                    </svg>
-                </span>
-            </div>
-        </div>
-        <div class="col-12 col-md-9 table-responsive">
+        <div class="col-12 table-responsive" id="messages_table">
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="text-center" scope="col">Acciones</th>
+                        <th class="text-center" scope="col"></th>
                         <th class="text-center" scope="col">De</th>
                         <th class="text-center" scope="col">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <% for(i of all_messages){ %>
+                <tr class="message_info">
                     <td class="text-center">
                         <a href="#">
                             <span class="text-danger"><i class="far fa-trash-alt"></i></span>
                         </a>
                     </td>
-                    <td class="text-center font-weight-bold">
-                        Nombre
+                    <td class="text-center font-weight-bold" id="names_lastname">
+                        <%= i.names %> <%= i.lastname %>
                     </td>
                     <td class="text-center font-weight-bold">
-                        12/02/2021
+                        <%= helpers.date(i.timeStamp)%>
                     </td>
+                    <input class="user_id" type="hidden" value="<%= i.user_id %>" >
+                    <input class="product_id" type="hidden" value="<%= i.product_id %>">
+                    <input id="user_message" type="hidden" value="<%= i.userMessage %>">
                 </tr>
-                <tr>
-                    <td class="text-center">
-                        <a href="#">
-                            <span class="text-danger"><i class="far fa-trash-alt"></i></span>
-                        </a>
-                    </td>
-                    <td class="text-center font-weight-bold">
-                        Nombre
-                    </td>
-                    <td class="text-center font-weight-bold">
-                        12/02/2021
-                    </td>
-                    </tr>
-                    <tr>
-                    <td class="text-center">
-                        <a href="#">
-                            <span class="text-danger"><i class="far fa-trash-alt"></i></span>
-                        </a>
-                    </td>
-                    <td class="text-center font-weight-bold">
-                        Nombre
-                    </td>
-                    <td class="text-center font-weight-bold">
-                        12/02/2021
-                    </td>
-                    </tr>
+                <% } %>
                 </tbody>
             </table>
         </div>
