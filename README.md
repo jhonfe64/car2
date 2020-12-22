@@ -36,7 +36,7 @@ and delete products
 
 ### To run the project
 
-Make sure mongodb
+Make sure to install mongodb
 type on vsc console => cd car2 and cd src to get into the right folder
 type nodemon index to run the server
 
