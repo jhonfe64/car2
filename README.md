@@ -16,12 +16,17 @@ and delete products
 
 ### Includes the following node packages
 
-1. connect-falsh 
-3. mongoose
-4. multer
-5. nodemon
-6. uuid
-7. bcrypt
+1. bcrypt 
+2. passport
+3. passport-local
+4. express-session
+5. connect-flash
+6. moment
+7. morgan
+8. multer
+9. nodemon
+10. mongoose
+
 
 ### To clone the repository and run it please follow this instructions
 
@@ -29,7 +34,7 @@ and delete products
 - Use npm i to install all dependences 
 
 
-### To run teh project
+### To run the project
 
 Make sure to install mongoose.
 type on vsc console => cd car2 and cd src //to get into the folders
