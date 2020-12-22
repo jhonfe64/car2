@@ -2,8 +2,8 @@
 
 # CAR 2
 
-this web application for selling second hand cars allows to sign up neww users, they can send messages to the admin, and get messages in their own profiles, andmin can create update
-and delete products
+This web aplication build in nodejs express and mongodb for selling second hand cars allows to sign up and login users, they can send messages throught a form to the admin, and get answears directly in their profiles, Admin can create update and delete products.
+
 
 ### This project use the followig tecnologies
 
