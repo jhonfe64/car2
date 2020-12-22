@@ -28,7 +28,7 @@ and delete products
 10. mongoose
 
 
-### To clone the repository and run it please follow this instructions
+### To clone the repository
 
 - Clone the repository https://github.com/jhonfe64/car2.git
 - Use npm i to install all dependences 
@@ -36,9 +36,9 @@ and delete products
 
 ### To run the project
 
-Make sure to install mongoose.
-type on vsc console => cd car2 and cd src //to get into the folders
-type nodemon index // to run the server
+Make sure mongodb
+type on vsc console => cd car2 and cd src to get into the right folder
+type nodemon index to run the server
 
 
 
