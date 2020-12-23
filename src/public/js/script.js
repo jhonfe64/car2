@@ -15,6 +15,7 @@ const initialPrice_filter = document.getElementById("initialPrice_filter");
 const AutoManual_filter = document.getElementById("AutoManual_filter");
 
 //Actualizar productos
+
 const update_product_information = document.getElementById("update_product_information");
 const delete_image = document.getElementsByClassName('delete_image');
 const existing_img_container = document.getElementsByClassName('existing_img_container');
@@ -31,42 +32,53 @@ if(message_info){
         message_info[i].addEventListener("click", function(){
         const names_lastname = this.children[1].innerHTML;
         const user_message = this.children[5].value;
-        const product_id =  this.children[4].value;
+        const product_id = this.children[4].value;
+        const user_id = this.children[3].value;
+        const user_phone = this.children[6].value;
+        const user_names = this.children[7].value;
+        const user_lastname = this.children[8].value;
         const messages_envelope = document.getElementsByClassName("messages_envelope")[0];
         const messages_inbox = document.getElementsByClassName("messages_inbox")[0];
+
         messages_envelope.classList.toggle("d-none");
         messages_inbox.classList.toggle("d-block");
         messages_inbox.addEventListener("click", function(){
             window.location.reload();
         });
-
             //encontrando el producto por id
             $.post('/productById/'+ product_id)
                 .done(data=>{
-                let product_image = data.image[0].file_name;
-                console.log(product_image);
+                let product_image = data.image[data.image.length -1].file_name;
                 let car_brand = data.brand;
                 let car_model = data.model;
 
                 const messages_table = document.getElementById("messages_table");
                 messages_table.innerHTML = `
-                <h4 class="mb-3">De:<span class="ml-2 capitalize">${names_lastname}</span></h4>
+                <h4 class="mb-3">De:<small><span class="ml-2 capitalize text-secondary">${names_lastname}</span></small></h4>
+                <h4 class="mb-3">Teléfono:<small><span class="ml-2 capitalize text-secondary">${user_phone}</small></span></h4>
                 <h4 class="mb-3">Producto: </h4>
-                    <h5 class="mb-2">Marca: <span class="ml-2 capitalize">${car_brand}</span></h5> 
-                    <h5 class="mb-3">Modelo: <span class="ml-2 capitalize">${car_model}</span></h5>
+                    <h5 class="mb-2">Marca: <small><span class="ml-2 capitalize text-secondary">${car_brand}</span></small></h5> 
+                    <h5 class="mb-3">Modelo: <small><span class="ml-2 capitalize text-secondary">${car_model}</span></small></h5>
                     <div class="img-container mt-4 mb-4" style="width:350px">
                         <img class="img-fluid rounded shadow-sm" src="../upload/${product_image}" alt="">
                     </div>
                 <h4 class="mb-3">Mensaje: </h4>
-                <p class="mb-5 text-justify">
+                <p class="mb-5 text-secondary text-justify">
                     ${user_message}
                 </p>
                 <h3 class="mb-3">Responder este mensaje</h3>
-                <form class="mb-5">
+                <form class="mb-5" action="/usermessage" method="POST">
+                    <input type="hidden" name="product_img" value="${product_image}">
+                    <input type="hidden" name="car_brand" value="${car_brand}">
+                    <input type="hidden" name="car_model" value="${car_model}">
+                    <input type="hidden" name="user_id" value="${user_id}">
+                    <input type="hidden" name="user_phone" value="${user_phone}">
+                    <input type="hidden" name="user_names" value="${user_names}">
+                    <input type="hidden" name="user_lastname" value="${user_lastname}">
                     <div class="form-group">
-                        <textarea class="form-control  text_area_min_height"></textarea>
+                        <textarea name="message" class="form-control  text_area_min_height"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary pr-5 pl-5">Enviar</button>
+                    <button class="btn btn-primary pr-5 pl-5">Enviar</button>
                 </form>
             `
             });
@@ -74,8 +86,76 @@ if(message_info){
     }
 }
 
-//perfil de usuario centro de mensajes
+//formulario responder mensajes user
+const user_answear_message = document.getElementsByClassName("user_answear_message");
 
+if(user_answear_message){
+    for(i=0; i<user_answear_message.length; i++){
+        user_answear_message[i].addEventListener("click", function(){
+            // const product_image = this.children[10].value;
+            console.log(user_answear_message[i]);
+            
+            const messages_table = document.getElementById("messages_table");
+            messages_table.innerHTML = `
+            <h4 class="mb-3">De:<small><span class="ml-2 capitalize text-secondary">Car2 Admin</span></small></h4>
+                <h4 class="mb-3">Producto: </h4>
+                    <h5 class="mb-2">Marca: <small><span class="ml-2 capitalize text-secondary"></span></small></h5> 
+                    <h5 class="mb-3">Modelo: <small><span class="ml-2 capitalize text-secondary"></span></small></h5>
+                    <div class="img-container mt-4 mb-4" style="width:350px">
+                        <img class="img-fluid rounded shadow-sm" src="../upload/" alt="">
+                    </div>
+                <h4 class="mb-3">Mensaje: </h4>
+                <p class="mb-5 text-secondary text-justify">
+                    
+                </p>
+                <h3 class="mb-3">Responder este mensaje</h3>
+                <form class="mb-5" action="/usermessage" method="POST">
+                    <input type="hidden" name="product_img" value="">
+                    <input type="hidden" name="car_brand" value="">
+                    <input type="hidden" name="car_model" value="">
+                    <input type="hidden" name="user_id" value="">
+                    <div class="form-group">
+                        <textarea name="message" class="form-control  text_area_min_height"></textarea>
+                    </div>
+                    <button class="btn btn-primary pr-5 pl-5">Enviar</button>
+                </form>
+            `
+
+            // product_img: String,
+            // car_brand: String,
+            // car_model: String,
+            // user_id: String,
+            // phone: Number,
+            // message: String, 
+            // names: String,
+            // lastname: String,
+            // from: {type: String, default: "CAR2 Admin"},
+            // timeStamp: {type: Date, default: Date.now}
+
+        // const names_lastname = this.children[1].innerHTML;
+        // const user_message = this.children[5].value;
+        // const product_id = this.children[4].value;
+        // const user_id = this.children[3].value;
+        // const user_phone = this.children[6].value;
+        // const messages_envelope = document.getElementsByClassName("messages_envelope")[0];
+        // const messages_inbox = document.getElementsByClassName("messages_inbox")[0];
+        // messages_envelope.classList.toggle("d-none");
+        // messages_inbox.classList.toggle("d-block");
+        // messages_inbox.addEventListener("click", function(){
+        //     window.location.reload();
+        // });
+            //encontrando el producto por id
+            // $.post('/productById/'+ product_id)
+                // .done(data=>{
+                // let product_image = data.image[data.image.length -1].file_name;
+                // let car_brand = data.brand;
+                // let car_model = data.model;
+
+                
+            // });
+        });
+    }
+}
 
 
 

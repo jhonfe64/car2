@@ -1,5 +1,6 @@
 const admin_messages = require('../models/admin_messages');
 const productInfo = require('../models/productInfo');
+const user_messages = require('../models/user_messages');
 const ctrl = {}
 
 
@@ -40,6 +41,17 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
         next();
     }
 }
+
+//si el rol no es super Admin, traer solo lo smensajes correspondientes a su id
+ctrl.userMessages = async (req, res) =>{
+    const user_id = req.user._id;
+    var all_messages = await user_messages.find({'user_id': user_id});
+    console.log("todos los mensajes", all_messages);
+    if(all_messages){
+        res.render('../views/userprofile', {all_messages: all_messages});
+    }
+}
+
 
 
 ctrl.productById = async (req, res) =>{

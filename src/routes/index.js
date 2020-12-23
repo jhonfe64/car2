@@ -57,14 +57,16 @@ module.exports = function(app){
     }));
 
     //===> mostrando la vista de perfil (mensajes del usuario que inicia sesión)
-    router.get('/profile', profile.Islogged, profile.validateSuperAdmin, /*profile.showProfile*/)
+    router.get('/profile', profile.Islogged, profile.validateSuperAdmin,  profile.userMessages);
 
     //===> Guardando los mensajes en el modelo de mansajes
     router.post('/messages', profile.Islogged,  messages.admin_messages);
 
     //===> Eliminando mesajes por id
-
     router.get('/deletemessage/:id', messages.delete_message);
+
+    //===>admin respondiendo mensajes del formd e contacto
+    router.post('/usermessage', messages.user_messages)
 
     //===> Trayendo la imagen del producto que el usuario envio por el form de contacto para mostrarla al admin a la hora de responder mensajes  profile.js
     router.post('/productById/:product_id', profile.productById);
