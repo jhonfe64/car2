@@ -10,7 +10,7 @@
             Cerrar sesión
         </a>
         <% if(user){ %>
-            <h3 class="mb-4">Hola <%=user.name_lastname%></h3>
+            <h3 class="mb-4 capitalize">Hola <%=user.name_lastname%></h3>
         <% } %>    
         <div class="col-12 mb-5 bg-primary pt-3 pb-3 pl-5 pr-5">
             <h1 class="text-white mb-0 w-100 d-flex justify-content-between align-items-center">Mis mensajes
@@ -47,7 +47,7 @@
                             </svg>
                         </a>
                     </td>
-                    <td class="text-center font-weight-bold" id="names_lastname">
+                    <td class="text-center font-weight-bold capitalize" id="names_lastname">
                         <%= i.names %> <%= i.lastname %>
                     </td>
                     <td class="text-center font-weight-bold">

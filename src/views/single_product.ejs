@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-7">
-                <h4 class="mb-4"><%= single_product.brand %> <%= single_product.model %></h4>
+                <h4 class="mb-4 capitalize"><%= single_product.brand %> <%= single_product.model %></h4>
                 <div class="col-12 p-0">
                     <img class="img-fluid" src="../upload/<%=single_product.image[0].file_name %>" alt="">
                 </div>
@@ -43,14 +43,14 @@
                             <path fill-rule="evenodd" d="M7.5 9.5v-6h1v6h-1z"/>
                             <path d="M10 9.75c0 .414-.895.75-2 .75s-2-.336-2-.75S6.895 9 8 9s2 .336 2 .75zM10 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
                         </svg>
-                        <h6 class="mb-0"><small class="font-weight-bold"><%= single_product.transmision %></small></h6>
+                        <h6 class="mb-0"><small class="font-weight-bold capitalize"><%= single_product.transmision %></small></h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 ">
                         <ul class="m-0 p-0 mt-4">
                             <li class="mb-2 border-bottom pb-2 d-flex">
-                                <div class="w-50">Color:</div>
+                                <div class="w-50 capitalize">Color:</div>
                                 <div class="w-50 text-right font-weight-bold"><%= single_product.color %></div>
                             </li>
                             <li class="mb-2 border-bottom pb-2 d-flex">
@@ -63,7 +63,7 @@
                             </li>
                             <li class="mb-2 border-bottom pb-2 d-flex">
                                 <div class="w-50">Rines:</div>
-                                <div class="w-50 text-right font-weight-bold"><%= single_product.rims%></div>
+                                <div class="w-50 text-right font-weight-bold capitalize"><%= single_product.rims%></div>
                             </li>
                             <li class="mb-2 border-bottom pb-2 d-flex">
                                 <div class="w-50">Vel max:</div>
@@ -374,9 +374,7 @@
             <div class="modal-content">
                 <div class="modal-header message_modal_header text-white pr-5 pl-5 pb-4 pt-4 bg-dark">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                        </svg>
+                        <span class="text-white"><i class="fas fa-car"></i></span>
                     </h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -409,14 +407,18 @@
                         <div class="modal-footer border-0 p-0">
                             <% if(!user){ %>
                                 <div class="alert alert-primary w-100 m-0 rounded-0 mb-3 mt-3" role="alert">
-                                    Para enviar mensaje debe  <a href="/logIn">iniciar sesión</a>
+                                    Para enviar mensajes debe  <a href="/logIn">iniciar sesión</a>
                                 </div>
                             <% } %>    
                             <button class="btn btn-secondary rounded-0 pr-4 pl-4" data-dismiss="modal">Cerrar</button>
                             <% if(user){ %>
-                                <button class="btn btn-warning rounded-0 pr-4 pl-4">Enviar mensaje</button>
+                                <button class="btn btn-warning rounded-0 pr-4 pl-4">Enviar mensaje
+                                    <i class="fas fa-share ml-2"></i>
+                                </button>
                             <% }else{ %>
-                                <button disabled class="btn btn-warning rounded-0 pr-4 pl-4 ">Enviar mensaje</button>
+                                <button disabled class="btn btn-warning rounded-0 pr-4 pl-4 ">Enviar mensaje
+                                    <i class="fas fa-share ml-2"></i>
+                                </button>
                             <% } %>
                         </div>
                     </form>

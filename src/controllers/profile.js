@@ -20,7 +20,7 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
     if(role === "superAdmin"){
         //todos los mensajes que reciebe el admin
         const all_messages = await admin_messages.find();
-
+        console.log("estos son todos los mensajes", all_messages);
         const all_products_id = [];
         let allproduct_info = "";
 
@@ -36,7 +36,6 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
             res.render('../views/profile', {all_messages: all_messages, allproduct_info: allproduct_info});
             
         }
-        
     }else{
         next();
     }

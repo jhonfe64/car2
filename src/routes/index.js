@@ -59,7 +59,7 @@ module.exports = function(app){
     //===> mostrando la vista de perfil (mensajes del usuario que inicia sesión)
     router.get('/profile', profile.Islogged, profile.validateSuperAdmin,  profile.userMessages);
 
-    //===> Guardando los mensajes en el modelo de mansajes
+    //===> Guardando los mensajes en el modelo de mensajes del super admin
     router.post('/messages', profile.Islogged,  messages.admin_messages);
 
     //===> Eliminando mesajes por id

@@ -5,12 +5,12 @@ const {Schema} = express;
 
 
 const user_messages_Schema = ({
-    product_img: String,
+    product_id: String,
     car_brand: String,
     car_model: String,
     user_id: String,
     phone: Number,
-    message: String, 
+    message: String,
     names: String,
     lastname: String,
     from: {type: String, default: "CAR2 Admin"},

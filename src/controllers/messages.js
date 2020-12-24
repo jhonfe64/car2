@@ -25,10 +25,9 @@ ctrl.admin_messages =  async (req, res) => {
 //Guardar mensajes que el admin le envia al usuario como respuesta viene del script
 
 ctrl.user_messages = async (req, res)=>{
-    const {product_img, car_brand, car_model, message, user_id, user_phone, user_names, user_lastname} = req.body
-    
+    const {product_id, car_brand, car_model, message, user_id, user_phone, user_names, user_lastname} = req.body
     const new_user_message = new userMessages({
-        product_img: product_img,
+        product_id: product_id,
         car_brand: car_brand,
         car_model: car_model,
         names: user_names,

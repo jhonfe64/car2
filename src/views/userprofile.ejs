@@ -10,7 +10,7 @@
             Cerrar sesión
         </a>
         <% if(user){ %>
-            <h3 class="mb-4">Hola <%=user.name_lastname%></h3>
+            <h3 class="mb-4 capitalize">Hola <%=user.name_lastname%></h3>
         <% } %>    
         <div class="col-12 mb-5 bg-primary pt-3 pb-3 pl-5 pr-5">
             <h1 class="text-white mb-0 w-100 d-flex justify-content-between align-items-center">Mis mensajes
@@ -48,20 +48,20 @@
                                     </svg>
                                 </a>
                             </td>
-                            <td class="text-center font-weight-bold">
+                            <td class="text-center font-weight-bold capitalize">
                                 <%= i.from %>
                             </td>
                             <td class="text-center font-weight-bold">
                                 <%= helpers.date(i.timeStamp)%>
                             </td>
-                            <input class="user_id" type="hidden" value="id del usuario <%= i.user_id %>" >
-                            <input class="product_id" type="hidden" value="imagen del producto <%= i.product_img %>">
-                            <input id="user_message" type="hidden" value="mensaje del usuario <%= i.message %>">
-                            <input type="hidden" value="telefono del usuario<%= i.phone%>">
-                            <input type="hidden" value="nombres del usuario<%= i.names%>">
-                            <input type="hidden" value="apellidos del usuario<%= i.lastname%>">
-                            <input type="hidden" value="marca del producto<%= i.car_brand%>">
-                            <input type="hidden" value="modelo del producto<%= i.car_model%>">
+                            <input class="user_id" type="hidden" value="<%= i.user_id %>" >
+                            <input class="product_id" type="hidden" value="<%= i.product_id %>">
+                            <input id="user_message" type="hidden" value="<%= i.message %>">
+                            <input type="hidden" value="<%= i.phone%>">
+                            <input type="hidden" value="<%= i.names%>">
+                            <input type="hidden" value="<%= i.lastname%>">
+                            <input type="hidden" value="<%= i.car_brand%>">
+                            <input type="hidden" value="<%= i.car_model%>">
                         </tr>
                     <% } %>    
                 <% } %>
