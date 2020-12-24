@@ -7,9 +7,9 @@ let brands = [];
 let result = "";
 ctrl.index = async (req, res) => {
     //==>trae las 6 imagenes por numero de vistas de mayor a menor
-    var product_info = await productInfo.find().populate('image').sort({'views': -1}).limit(6).exec()
+    var product_info = await productInfo.find().populate('image').sort({'views': -1}).limit(3).exec()
     //==>trae las 6 imagenes recientemente agregadas por fecha de mayor a menor
-    var new_arrivals = await productInfo.find().populate('image').sort({'timestamp': -1}).limit(6).exec()
+    var new_arrivals = await productInfo.find().populate('image').sort({'timestamp': -1}).limit(3).exec()
     //==> Busqueda de auto colocar todas las marcas 
     //Realizamos una consulta y traemos toda la info de los autos 
     var brand = await productInfo.find();

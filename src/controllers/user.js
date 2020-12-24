@@ -15,19 +15,25 @@ ctrl.signUp = async (req, res) => {
 
 
 ctrl.sigUpData = async(req, res) => {
-    const {name_lastname, email, phone_number, password} = req.body;
-    const encripted_password =  bcrypt.hashSync(password, 10);
+    const {name_lastname, email, phone_number, password, first_password} = req.body;
 
-    const newUser  = new User({
-        name_lastname: name_lastname.toLowerCase().trim(),
-        email: email.toLowerCase().trim(),
-        phone_number: phone_number.trim(),
-        password: encripted_password
-    })
+    if(password !== first_password){
+        req.flash('message', 'Las contraseñas no coinciden');
+        res.redirect('/signUp')
+    }else{
+        const encripted_password =  bcrypt.hashSync(password, 10);
 
-    const newUserSaved = newUser.save();
-    if(newUserSaved){
-        res.redirect('/logIn');
+        const newUser  = new User({
+            name_lastname: name_lastname.toLowerCase().trim(),
+            email: email.toLowerCase().trim(),
+            phone_number: phone_number.trim(),
+            password: encripted_password
+        })
+
+        const newUserSaved = newUser.save();
+        if(newUserSaved){
+            res.redirect('/logIn');
+        }
     }
 }
 

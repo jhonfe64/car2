@@ -115,6 +115,7 @@ window.onload = function() {
                         for(i=0; i<data.length; i++){
                             model_select.removeAttribute("disabled");
                             let option = document.createElement("option");
+                            option.setAttribute("class", "capitalize");
                             option.setAttribute("name", `${data[i]}`);
                             option.innerHTML = `${data[i]}`;
                             model_select.appendChild(option);
@@ -194,12 +195,6 @@ if(model_filter){
     .done(data =>{
 
         console.log(data);
-
-        // model_filter_option_disabled = document.createElement("option");
-        // model_filter_option_disabled.setAttribute("disabled", "");
-        // model_filter_option_disabled.setAttribute("selected", "");
-        // model_filter_option_disabled.innerHTML = "Seleccione un modelo";
-        // model_filter.appendChild(model_filter_option_disabled);
         all_models = [];
         if(data.length > 0){
             for(i of data){
@@ -307,7 +302,6 @@ if(updatePicturesInput){
         for(i=0; i<new_delete_image_btn.length; i++){
            new_delete_image_btn[i].addEventListener("click", function(){
                this.style.display = "none";
-               //console.log(this.nextElementSibling.firstElementChild);
                this.nextElementSibling.style.display = "none";
                new_image_id = this.nextElementSibling.firstElementChild.id;
                 //pasamos el id a la funcion que va a eliminar dicha imagen del array images
