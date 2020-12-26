@@ -167,6 +167,7 @@ function models_number(){
 FILTROS
 =================================================================================*/
 if(brand_filter){
+    //cuando se sellecione alguna marca
     brand_filter.addEventListener("change", function(){
 
         model_filter.innerHTML = "";
@@ -176,6 +177,22 @@ if(brand_filter){
         default_option.setAttribute("disabled", "");
         default_option.setAttribute("selected", "");
         model_filter.appendChild(default_option); 
+
+        AutoManual_filter.innerHTML = "";
+
+        const default_option_autoManual = document.createElement("option");
+        default_option_autoManual.innerHTML = "Seleccione transmisión";
+        default_option_autoManual.setAttribute("disabled", "");
+        default_option_autoManual.setAttribute("selected", "");
+        AutoManual_filter.appendChild(default_option_autoManual);
+
+        color_filter.innerHTML = "";
+
+        const default_option_color = document.createElement("option");
+        default_option_color.innerHTML = "Seleccione un color";
+        default_option_color.setAttribute("disabled", "");
+        default_option_color.setAttribute("selected", "");
+        color_filter.appendChild(default_option_color);
  
 
         model_filter.removeAttribute("disabled");
@@ -199,11 +216,10 @@ if(brand_filter){
                 model_option.innerHTML = single_model_array[i];
                 model_filter.appendChild(model_option);
            }
-           //Creando opciones para la transmision
-
         });
         
     });
+    //cuando se leccione algun modelo
         model_filter.addEventListener("change", function(){
 
         AutoManual_filter.innerHTML = "";
@@ -212,6 +228,14 @@ if(brand_filter){
         default_option.setAttribute("disabled", "");
         default_option.setAttribute("selected", "");
         AutoManual_filter.appendChild(default_option);
+
+        color_filter.innerHTML = "";
+
+        const default_option_color = document.createElement("option");
+        default_option_color.innerHTML = "Seleccione un color";
+        default_option_color.setAttribute("disabled", "");
+        default_option_color.setAttribute("selected", "");
+        color_filter.appendChild(default_option_color);
         
  
         AutoManual_filter.removeAttribute("disabled");
@@ -220,22 +244,36 @@ if(brand_filter){
         const model = this.value;
         
         $.post('/product/productbymodel/'+ model)
+
         .done(data => {
             const no_repeat_transmision = [];
+            const no_repeat_color = [];
             for(i of data){
-                no_repeat_transmision.push(i.transmision);   
+                //no repetir transmision
+                no_repeat_transmision.push(i.transmision);
+                //no repetir color
+                no_repeat_color.push(i.color);
             }
 
             const single_transmision = new Set(no_repeat_transmision);
             const single_transmision_array = [...single_transmision];
-            console.log(single_transmision_array);
 
             for(i=0; i<single_transmision_array.length; i++){
                 const transmision_option = document.createElement("option");
                 transmision_option.innerHTML = single_transmision_array[i];
                 AutoManual_filter.appendChild(transmision_option);
             }
-        })
+
+            const single_color = new Set(no_repeat_color);
+            const single_color_array = [...single_color];
+            console.log(single_color_array);
+
+            for(i=0; i<single_color_array.length; i++){
+                const color_option = document.createElement("option");
+                color_option.innerHTML = single_color_array[i];
+                color_filter.appendChild(color_option);
+            }
+        });
     })
 }
 

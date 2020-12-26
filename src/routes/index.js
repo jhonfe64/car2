@@ -29,6 +29,10 @@ module.exports = function(app){
     //===> /product/searching
     router.post('/product/searching', home.product_searching);
 
+    /*=========================================================
+    FILTROS
+    =========================================================*/
+
     //===> filtros
     router.post('/product/filters', newProduct.filters);
     router.post('/product/fullproduct/:brand', newProduct.fullproduct);
@@ -74,11 +78,6 @@ module.exports = function(app){
 
     //===> cerrando sesion
     router.get('/user/logout', user.logOut);
-
-
-
-
-
 
 
     //Variables globales    

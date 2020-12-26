@@ -4,8 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 const productInfo = require('../models/productInfo');
 const Image = require('../models/image');
 
-
-
 const ctrl = {}
 
 //==> guardar las imagenes en la bd
@@ -148,10 +146,26 @@ ctrl.product_gallery = async(req, res) => {
 //===> Recibe los valores de los filtros
 
 ctrl.filters = async (req, res) => {
-    
-    let query = {};
 
-   const {brand, model}  = req.body;
+    //taer todas las marcas y pasarlas a la vista filter
+    
+   let query = {};
+
+   //trayendo todos los autos
+   const car_brands = await productInfo.find();
+   //obteniendo solo las marcas 
+
+   const no_repeat_brands = [];
+   for( i of car_brands){
+       const all_brands = i.brand;
+       no_repeat_brands.push(all_brands);
+   }
+
+   const single_brand = new Set(no_repeat_brands);
+   const all_brands = [...single_brand];
+
+
+   const {brand, model, transmision, color}  = req.body;
 
     if(brand !== "undefined"){ // preguntamos si existe brands
         query['brand'] = new RegExp(brand, 'i');
@@ -160,11 +174,22 @@ ctrl.filters = async (req, res) => {
     if(model !== "undefined"){ // preguntamos si existe model
         query['model'] = new RegExp(model, 'i');
      }
+
+    if(transmision !== "undefined"){ // preguntamos si existe la transmision
+        console.log(transmision)
+        query['transmision'] = new RegExp(transmision, 'i');
+    }
+
+    if(color !== "undefined"){ // preguntamos si existe el color
+        console.log(color);
+        query['color'] = new RegExp(color, 'i');
+    }
     // // siempre que se trabaja con Promesas se debe usar
     // // un bloque try / catch
     try {
-        let cars = await productInfo.find(query).populate('image');
-        return res.send(cars);
+        let car = await productInfo.find(query).populate('image');
+        res.render('searching_brand', {search_by_brand: car, all_brands: all_brands});
+        return res.send(car);
     //    cars = await productInfo.find({'brand': new RegExp(brand, 'i'), 'model': new RegExp(model, 'i')});
     //    res.send(cars);
        

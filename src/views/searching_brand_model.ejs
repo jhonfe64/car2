@@ -2,7 +2,7 @@
 <%-include('partials/menu') %>
 <%-include('partials/filters') %>
 <% if(search_by_brand_and_model){ %>  
-    <div class="container new_page"> 
+    <div class="container mb-5" style="margin-top: 80px;"> 
         <div class="row d-flex justify-content-between new_page_content">
             <% for(i of search_by_brand_and_model){ %>
                 <div class="card more_viewed_card mb-5 border-0 shadow-sm p-0">
@@ -23,5 +23,6 @@
             <% } %>
           </div>
     </div>
-<% } %>  
+<% } %>
+<%-include('partials/footer') %>    
 <%-include('layouts/footer') %>  
