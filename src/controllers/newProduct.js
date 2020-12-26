@@ -8,8 +8,6 @@ const Image = require('../models/image');
 
 const ctrl = {}
 
-
-
 //==> guardar las imagenes en la bd
 let images_ids = [];
 let valid_extentions = [];
@@ -141,33 +139,34 @@ ctrl.product_gallery = async(req, res) => {
     }
 }
 
+// let dd = {
+//     nombre: 'new RegExp(brand, i)',
+//     apellido: 'new RegExp(brand, i)',
+// }
+
 
 //===> Recibe los valores de los filtros
 
-
-ctrl.filters = async(req, res)=>{
-    //req.params.model = "Suburban 2020";
-    const brand = req.params.brand;
-    const model = req.params.model;
-
+ctrl.filters = async (req, res) => {
+    
     let query = {};
 
-    // req.params.model = undefined si le pongin undefiend funciona;
-
+   const {brand, model}  = req.body;
 
     if(brand !== "undefined"){ // preguntamos si existe brands
-        query['brand'] = new RegExp(req.params.brand);
+        query['brand'] = new RegExp(brand, 'i');
     }
 
     if(model !== "undefined"){ // preguntamos si existe model
-        query['model'] = new RegExp(req.params.model);
+        query['model'] = new RegExp(model, 'i');
      }
-    // siempre que se trabaja con Promesas se debe usar
-    // un bloque try / catch
+    // // siempre que se trabaja con Promesas se debe usar
+    // // un bloque try / catch
     try {
-        console.log(query);
         let cars = await productInfo.find(query).populate('image');
         return res.send(cars);
+    //    cars = await productInfo.find({'brand': new RegExp(brand, 'i'), 'model': new RegExp(model, 'i')});
+    //    res.send(cars);
        
     }
     catch (e) {
@@ -177,6 +176,22 @@ ctrl.filters = async(req, res)=>{
       });
     }
   }
+
+
+ctrl.fullproduct = async (req, res)=>{
+    const brand = req.params.brand;
+    const poduct = await productInfo.find({brand: new RegExp(brand)});
+    if(poduct){
+        res.send(poduct);
+    }
+}
+
+
+ctrl.productsByModel = async (req, res)=>{
+    const model = req.params.model;
+    const productModel = await productInfo.find({model: new RegExp(model)});
+    res.send(productModel);
+}
 
 
 

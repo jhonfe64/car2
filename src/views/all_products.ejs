@@ -15,7 +15,6 @@
                         </tr>
                     </thead>
                     <% if(all_cars){ %>
-                         
                         <% for(i of all_cars){ %>
                         <tbody>
                             <tr>
@@ -29,8 +28,8 @@
                                     </a>
                                 </div>
                             </th> 
-                                <td class="text-center"><%= i.brand %></td>
-                                <td class="text-center"><%= i.model %></td>
+                                <td class="text-center capitalize"><%= i.brand %></td>
+                                <td class="text-center capitalize"><%= i.model %></td>
                                 <td class="d-flex justify-content-center border-0">
                                     <div class="img_container" style="width:150px">
                                         <img class="w-100" src="../upload/<%=i.image[0].file_name %>" alt="">

@@ -30,8 +30,9 @@ module.exports = function(app){
     router.post('/product/searching', home.product_searching);
 
     //===> filtros
-    // router.get('/product/searching/:brand/:model', newProduct.filters);
-    router.get('/product/filters/:brand/:model', newProduct.filters);
+    router.post('/product/filters', newProduct.filters);
+    router.post('/product/fullproduct/:brand', newProduct.fullproduct);
+    router.post('/product/productbymodel/:model', newProduct.productsByModel);
 
     // ===> Borrando los productos subidos
     router.get('/deleteProduct/:id', profile.Islogged, /*edit_produts.n,*/ edit_products.delete);

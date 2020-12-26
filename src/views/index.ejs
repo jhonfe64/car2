@@ -7,14 +7,14 @@
         <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus nobis iure necessitatibus, placeat similique commodi consequuntur in optio eius culpa</p>
         <form action="/product/searching" method="POST" class="row d-flex flex-wrap justify-content-around">
                 <% if(brands){ %>
-                    <select id="brand" name="brand" class="form-control border-0">
+                    <select id="brand" name="brand" class="form-control border-0 capitalize">
                         <option id="empty" value="" selected="selected" disabled>Seleccione una marca</option>
                         <% for(i=0; i<brands.length; i++){ %>
                         <option class="capitalize" value="<%= brands[i] %>" name="<%= brands[i] %>"><%= brands[i] %></option>
                         <% } %>
                     </select>
                 <% } %>
-            <select class="form-control border-0" name="model" id="model_select" disabled>
+            <select class="form-control border-0 capitalize" name="model" id="model_select" disabled>
                 <option>seleccione un modelo</option>
             </select>
             <button class="btn btn-warning searching_btn border-0" id="searching_btn">

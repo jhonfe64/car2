@@ -13,6 +13,7 @@ const brand_filter = document.getElementById("brand_filter");
 const model_filter = document.getElementById("model_filter");
 const initialPrice_filter = document.getElementById("initialPrice_filter");
 const AutoManual_filter = document.getElementById("AutoManual_filter");
+const color_filter = document.getElementById("color_filter");
 
 //Actualizar productos
 
@@ -161,61 +162,81 @@ function models_number(){
 }
 
 
-var car_info = [];
 
+/*================================================================================
+FILTROS
+=================================================================================*/
 if(brand_filter){
     brand_filter.addEventListener("change", function(){
-        //cuando cambie la marca del filter borre el modelo que esta en car_info[1]
-        //limpie os options dentro del filtro model
-        //car_info[1] = undefined;
+
         model_filter.innerHTML = "";
-        var brand = brand_filter.value;
-        if(brand){
-            car_info[0] = brand;
-            ajax_consult(car_info);
-        }
+
+        const default_option = document.createElement("option");
+        default_option.innerHTML = "Seleccione un modelo";
+        default_option.setAttribute("disabled", "");
+        default_option.setAttribute("selected", "");
+        model_filter.appendChild(default_option); 
+ 
+
+        model_filter.removeAttribute("disabled");
+       const brand = this.value;
+        $.post('/product/fullproduct/'+brand)
+
+        .done(data => {
+            //Creando opciones para los modelos
+            const no_repeat_model = [];
+
+           for(i of data){
+               //modelo
+               no_repeat_model.push(i.model);
+           }
+
+           const single_model = new Set(no_repeat_model);
+           const single_model_array = [...single_model];
+
+           for(i=0; i<single_model_array.length; i++){
+                const model_option = document.createElement("option");
+                model_option.innerHTML = single_model_array[i];
+                model_filter.appendChild(model_option);
+           }
+           //Creando opciones para la transmision
+
+        });
+        
     });
-}
+        model_filter.addEventListener("change", function(){
 
+        AutoManual_filter.innerHTML = "";
+        const default_option = document.createElement("option");
+        default_option.innerHTML = "Seleccione transmisión";
+        default_option.setAttribute("disabled", "");
+        default_option.setAttribute("selected", "");
+        AutoManual_filter.appendChild(default_option);
+        
+ 
+        AutoManual_filter.removeAttribute("disabled");
+        color_filter.removeAttribute("disabled");
 
-if(model_filter){
-    model_filter.addEventListener("change", function(){
-        var model = model_filter.value;
-        if(model){
-            car_info[1] = model;
-            ajax_consult(car_info);
-        }
-    });
-    model_filter.innerHTML = "";
-    const ajax_consult = (car_info) => {
-    var brand = car_info[0];
-    var model = car_info[1];
-
-    $.get('/product/filters/'+ brand + "/" + model)
-    .done(data =>{
-
-        console.log(data);
-        all_models = [];
-        if(data.length > 0){
+        const model = this.value;
+        
+        $.post('/product/productbymodel/'+ model)
+        .done(data => {
+            const no_repeat_transmision = [];
             for(i of data){
-                /*==========================================
-                Eliminando los modelos repetidos
-                ===========================================*/
-                all_models.push(i.model);
-                var d = new Set(all_models);
-                var result = [...d];
-                console.log(result);
-               //creando opciones para los modelos
-                model_filter.removeAttribute("disabled");
-                model_filter_option = document.createElement("option");
-                model_filter_option.setAttribute("value", i.model);
-                model_filter_option.innerHTML = i.model;
-                model_filter.appendChild(model_filter_option);
+                no_repeat_transmision.push(i.transmision);   
             }
-        }
-    });
-}
-ajax_consult();
+
+            const single_transmision = new Set(no_repeat_transmision);
+            const single_transmision_array = [...single_transmision];
+            console.log(single_transmision_array);
+
+            for(i=0; i<single_transmision_array.length; i++){
+                const transmision_option = document.createElement("option");
+                transmision_option.innerHTML = single_transmision_array[i];
+                AutoManual_filter.appendChild(transmision_option);
+            }
+        })
+    })
 }
 
 

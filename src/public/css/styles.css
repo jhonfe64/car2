@@ -36,6 +36,10 @@ p {
     text-transform: capitalize;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 .link_cursor
 {
     cursor: pointer;
@@ -123,6 +127,10 @@ footer a:hover {
 
 .rotateArrow {
     transform: rotate(180deg);
+}
+
+.filter_option{
+    width: 20%;
 }
 
 
@@ -334,4 +342,9 @@ Modal messages
     .more_viewed_card {
         width: 100%;
     }
+
+    .filter_option{
+        width: 100%;
+    }
+    
 }
