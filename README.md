@@ -53,4 +53,4 @@ type nodemon index to run the server
 
 ![](https://github.com/jhonfe64/car2/blob/master/all_products.png?raw=true)
 
-![](https://github.com/jhonfe64/car2/blob/master/searching1.png?raw=true)
+![](https://github.com/jhonfe64/car2/blob/master/searching2.png?raw=true)
