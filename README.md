@@ -30,7 +30,7 @@ This web aplication build in nodejs express and mongodb for selling second hand 
 
 ### To clone the repository
 
-- Clone the repository https://github.com/jhonfe64/car2.git
+- git clone https://github.com/jhonfe64/car2.git
 - Use npm i to install all dependences 
 
 
