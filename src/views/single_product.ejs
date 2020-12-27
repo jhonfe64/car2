@@ -381,7 +381,7 @@
                     </button>
                 </div>
                 <div class="modal-body modal_content">
-                    <form class="p-4" action="/messages" method="POST">
+                    <form class="p-4" action="/messages" method="POST" id="user_message_form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nombres</label>
                             <input autocomplete="off" type="text" name="names" class="form-control pl-0 pr-0" id="names">
@@ -405,6 +405,7 @@
                             <input type="hidden" name="user_id" value="<%= user._id %>">
                         <% } %>    
                         <div class="modal-footer border-0 p-0">
+                            <div id="user_alert" class="w-100"></div>
                             <% if(!user){ %>
                                 <div class="alert alert-primary w-100 m-0 rounded-0 mb-3 mt-3" role="alert">
                                     Para enviar mensajes debe  <a href="/logIn">iniciar sesión</a>
@@ -412,7 +413,7 @@
                             <% } %>    
                             <button class="btn btn-secondary rounded-0 pr-4 pl-4" data-dismiss="modal">Cerrar</button>
                             <% if(user){ %>
-                                <button class="btn btn-warning rounded-0 pr-4 pl-4">Enviar mensaje
+                                <button class="btn btn-warning rounded-0 pr-4 pl-4" id="send_user_message">Enviar mensaje
                                     <i class="fas fa-share ml-2"></i>
                                 </button>
                             <% }else{ %>

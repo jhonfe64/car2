@@ -1,8 +1,11 @@
 <%-include('layouts/header', {title: 'home'}) %>
 <%-include('partials/menu') %>
-<div class="container new_page">
+<div class="container new_page mb-5">
     <div class="row">
         <div class="container">
+            <% if(message){ %>
+                <%-include('partials/alerts') %> 
+              <% } %>  
             <h1 class="mt-5 mb-5">Todos los productos</h1>
             <div class="table-responsive">
                 <table class="table">
@@ -44,5 +47,5 @@
         </div>
     </div>
 </div>
-
+<%-include('partials/footer') %>
 <%-include('layouts/footer') %>  

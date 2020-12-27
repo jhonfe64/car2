@@ -593,6 +593,32 @@ if(user_answear_message){
 }
 
 
+const user_message_form_elements = document.querySelectorAll("#user_message_form input, textarea");
+
+const send_user_message_btn = document.getElementById("send_user_message");
+
+const user_alert = document.getElementById("user_alert")
+
+send_user_message_btn.addEventListener("click", function(e){
+    let t = false;
+    for(i=0; i<user_message_form_elements.length; i++){
+        if(user_message_form_elements[i].value === ""){
+            e.preventDefault();
+            t = true;
+        }
+    }
+    if(t === true){
+        user_alert.innerHTML = `
+        <div class="alert alert-primary alert-dismissible rounded-0 fade show" role="alert">
+            Todos los campos son obligatorios
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>`
+    }
+})
+
+
 
 
 

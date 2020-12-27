@@ -96,6 +96,7 @@ ctrl.uploadImage = async (req, res) => {
             newImageInfo.save();
             valid_extentions = [];
             images_ids = []
+            req.flash('message', 'Se ha agregado un nuevo producto correctamente');
             res.redirect('/newProduct');
         }
         console.log("producto agregado correctamente");

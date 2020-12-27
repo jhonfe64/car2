@@ -65,7 +65,7 @@ module.exports = function(app){
     router.get('/profile', profile.Islogged, profile.validateSuperAdmin,  profile.userMessages);
 
     //===> Guardando los mensajes en el modelo de mensajes del super admin
-    router.post('/messages', profile.Islogged,  messages.admin_messages);
+    router.post('/messages',  profile.Islogged, messages.admin_messages);
 
     //===> Eliminando mesajes por id
     router.get('/deletemessage/:id', messages.delete_message);

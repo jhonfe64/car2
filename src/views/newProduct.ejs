@@ -9,6 +9,11 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <div class="col-12">
+                <% if(message){ %>
+                    <%-include('partials/alerts') %> 
+                  <% } %>  
+              </div>
         </div>
        <form action="/create"  method="post" enctype="multipart/form-data" class="d-flex flex-wrap">
             <div class="form-group col-12 col-md-6">

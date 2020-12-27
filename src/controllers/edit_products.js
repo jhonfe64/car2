@@ -47,6 +47,7 @@ ctrl.delete = async (req, res) => {
     //Ahora borre el carro del modelo productInfo
     let delete_car = await productInfo.deleteOne({_id: id});
     if(deletedImages && delete_car){
+        req.flash('message', 'El producto ha sido eliminado')
         res.redirect('/getCars');
     }
 }
@@ -165,8 +166,8 @@ ctrl.saveEditProducts = async(req, res)=>{
         image: images_ids.concat(existing_pictures)
    }, {useFindAndModify: false});
    images_ids = [];
-   console.log(images_ids.length);
-
+    
+   req.flash('message', 'Se han guardado los cambios satisfactoriamente');
     res.redirect('/getCars');
     
 }
