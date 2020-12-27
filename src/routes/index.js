@@ -79,10 +79,13 @@ module.exports = function(app){
     //===> cerrando sesion
     router.get('/user/logout', user.logOut);
 
+    router.get('/404', (req, res)=>{
+        res.render('404');
+    })
 
     //Variables globales    
     router.use((req, res, next)=>{
-        res.send("no existe esta pagina");
+        res.redirect('/404')
         next();
     });
 
