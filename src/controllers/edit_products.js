@@ -14,6 +14,7 @@ const ctrl = {};
 //mostrando todos los productos
 ctrl.allproducts = async(req, res)=>{
     let all_cars = await productInfo.find().populate('image').sort();
+    console.log(all_cars);
     res.render('all_products', {all_cars: all_cars});
 }
 

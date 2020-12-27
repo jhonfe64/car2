@@ -1,6 +1,7 @@
 const admin_messages = require('../models/admin_messages');
 const productInfo = require('../models/productInfo');
 const user_messages = require('../models/user_messages');
+const users = require('../models/users');
 const ctrl = {}
 
 
@@ -36,6 +37,18 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
             res.render('../views/profile', {all_messages: all_messages, allproduct_info: allproduct_info});
             
         }
+    }else{
+        next();
+    }
+}
+
+
+//si el rol es super Admin mustrele todos los usuarios
+ctrl.validateUserSuperAdmin = async(req, res, next)=> {
+    const role = req.user.role;
+    if(role === "superAdmin"){
+        const all_users = await users.find();
+        res.render('../views/all_users', {all_users: all_users});
     }else{
         next();
     }

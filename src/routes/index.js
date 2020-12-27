@@ -79,6 +79,9 @@ module.exports = function(app){
     //===> cerrando sesion
     router.get('/user/logout', user.logOut);
 
+    // trayendo todos los usuarios registrados
+    router.get('/users', profile.validateUserSuperAdmin)
+
     router.get('/404', (req, res)=>{
         res.render('404');
     })

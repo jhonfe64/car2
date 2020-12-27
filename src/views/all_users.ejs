@@ -1,0 +1,46 @@
+<%-include('layouts/header', {title: 'user'}) %>
+<%-include('partials/menu') %>
+
+<div class="container mb-5 new_page">
+    <h1 class="mt-5 mb-5">Todos los usuarios</h1>
+    <div class="table-responsive">
+       <table class="table"> 
+          <thead>
+             <tr>
+                <th class="text-center" scope="col">Acciones</th>
+                <th class="text-center" scope="col">Nombres/apellidos</th>
+                <th class="text-center" scope="col">Email</th>
+                <th class="text-center" scope="col">Teléfono</th>
+             </tr>
+          </thead>
+          <% for(i of all_users){ %>
+            <% if(i.role != "superAdmin"){ %>
+          <tbody>
+            <tr>
+                <th class="border-0" scope="row">
+                    <div class="action_icons text-center">
+                        <a href="deleteUser/<%= i._id %>">
+                            <span class="text-danger">
+                            <svg class="svg-inline--fa fa-trash-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="far" data-icon="trash-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z"></path>
+                            </svg>
+                            </span>
+                        </a>
+                    </div>
+                </th>
+                <td class="text-center capitalize"><%= i.name_lastname %></td>
+                <td class="text-center"><%= i.email %></td>
+                <td class="text-center capitalize"><%= i.phone_number %></td>
+                </tr>
+          </tbody>
+          <% } %>    
+          <% } %> 
+       </table>
+    </div>
+ </div>
+
+
+
+
+<%-include('partials/footer') %>
+<%-include('layouts/footer') %>  

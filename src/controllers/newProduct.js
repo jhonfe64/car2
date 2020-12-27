@@ -61,6 +61,7 @@ ctrl.uploadImage = async (req, res) => {
                 brand: req.body.brand.toLowerCase().trim(),
                 model: req.body.model.toLowerCase().trim(),
                 color: req.body.color.toLowerCase().trim(),
+                doors: req.body.doors.trim(),
                 image: images_ids,
                 mileaje: req.body.mileaje.trim(),
                 price: req.body.price.trim(),

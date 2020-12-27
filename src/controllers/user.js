@@ -13,7 +13,7 @@ ctrl.signUp = async (req, res) => {
 }
 
 
-
+//logenado usuarios
 ctrl.sigUpData = async(req, res) => {
     const {name_lastname, email, phone_number, password, first_password} = req.body;
 
@@ -25,7 +25,7 @@ ctrl.sigUpData = async(req, res) => {
 
         const newUser  = new User({
             name_lastname: name_lastname.toLowerCase().trim(),
-            email: email.toLowerCase().trim(),
+            email: email.trim(),
             phone_number: phone_number.trim(),
             password: encripted_password
         })
@@ -36,6 +36,8 @@ ctrl.sigUpData = async(req, res) => {
         }
     }
 }
+
+//cerrando sesión
 
 ctrl.logOut = async (req, res) => {
     req.logout();

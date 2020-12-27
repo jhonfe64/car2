@@ -18,7 +18,7 @@
                     <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center"><a href="#">Buscar</a></li>
                     <% if(user){ %>
                         <% if(user.role !== 'superAdmin'){ %>
-                            <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/user/logout">Cerra sesión</a></li>
+                            <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/user/logout">Cerrar sesión</a></li>
                             <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center ml-2">
                                 <a href="/profile">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope-fill text-black-50" viewBox="0 0 16 16">
@@ -30,7 +30,8 @@
                         <% if( user.role == 'superAdmin'){ %>
                             <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/newProduct">Subir producto</a></li>
                             <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/getCars">Ver productos</a></li>
-                            <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/user/logout">Cerra sesión</a></li>
+                            <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/users">Usuarios</a></li>
+                            <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/user/logout">Cerrar sesión</a></li>
                             <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center ml-2">
                                 <a href="/profile">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope-fill text-black-50" viewBox="0 0 16 16">
