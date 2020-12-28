@@ -3,6 +3,11 @@
 
 <div class="container mb-5 new_page">
     <h1 class="mt-5 mb-5">Todos los usuarios</h1>
+    <div class="container mb-2">
+        <% if(message){ %>
+            <%-include('partials/alerts') %>
+        <% } %>   
+    </div>
     <div class="table-responsive">
        <table class="table"> 
           <thead>

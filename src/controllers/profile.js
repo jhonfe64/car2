@@ -42,6 +42,16 @@ ctrl.validateSuperAdmin = async(req, res, next)=>{
     }
 }
 
+//si el rol no es super Admin, traer solo lo smensajes correspondientes a su id
+ctrl.userMessages = async (req, res) =>{
+    const user_id = req.user._id;
+    var all_messages = await user_messages.find({'user_id': user_id});
+    console.log("todos los mensajes", all_messages);
+    if(all_messages){
+        res.render('../views/userprofile', {all_messages: all_messages});
+    }
+}
+
 
 //si el rol es super Admin mustrele todos los usuarios
 ctrl.validateUserSuperAdmin = async(req, res, next)=> {
@@ -54,15 +64,8 @@ ctrl.validateUserSuperAdmin = async(req, res, next)=> {
     }
 }
 
-//si el rol no es super Admin, traer solo lo smensajes correspondientes a su id
-ctrl.userMessages = async (req, res) =>{
-    const user_id = req.user._id;
-    var all_messages = await user_messages.find({'user_id': user_id});
-    console.log("todos los mensajes", all_messages);
-    if(all_messages){
-        res.render('../views/userprofile', {all_messages: all_messages});
-    }
-}
+
+
 
 
 

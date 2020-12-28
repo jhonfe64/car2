@@ -25,7 +25,7 @@ ctrl.sigUpData = async(req, res) => {
 
         const newUser  = new User({
             name_lastname: name_lastname.toLowerCase().trim(),
-            email: email.trim(),
+            email: email.toLowerCase().trim(),
             phone_number: phone_number.trim(),
             password: encripted_password
         })
@@ -42,6 +42,19 @@ ctrl.sigUpData = async(req, res) => {
 ctrl.logOut = async (req, res) => {
     req.logout();
     res.redirect('/');
+}
+
+
+//Eliminando usuarios
+
+ctrl.deleteUser = async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    const deleteuser = await User.deleteOne({'_id': id});
+    if(deleteuser){
+        req.flash('message', 'El usuario ha sido eliminado');
+        res.redirect('/users');
+    }
 }
 
 

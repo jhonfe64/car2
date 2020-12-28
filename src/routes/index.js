@@ -80,7 +80,11 @@ module.exports = function(app){
     router.get('/user/logout', user.logOut);
 
     // trayendo todos los usuarios registrados
-    router.get('/users', profile.validateUserSuperAdmin)
+    router.get('/users', profile.Islogged, profile.validateUserSuperAdmin);
+
+    //Eliminando usuaarios
+
+    router.get('/deleteUser/:id', profile.Islogged, user.deleteUser);
 
     router.get('/404', (req, res)=>{
         res.render('404');
