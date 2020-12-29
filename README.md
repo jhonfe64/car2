@@ -43,8 +43,8 @@ type nodemon index to run the server
 
 use the following credentials to try the project
 
-.user: correo@correo.com
-.password: jhon123
+### user: correo@correo.com
+### password: jhon123
 
 
 
