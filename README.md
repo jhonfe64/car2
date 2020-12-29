@@ -41,7 +41,7 @@ type on vsc console => cd car2 and cd src to get into the right folder
 type nodemon index to run the server
 
 
-### use the following credentials to try the project
+### Use the following INFORMATION to try the project
 
 #### user: correo@correo.com
 #### password: jhon123
