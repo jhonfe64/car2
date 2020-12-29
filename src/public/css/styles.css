@@ -318,6 +318,15 @@ Modal messages
     height: 200px;
 }
 
+.aboutus_section{
+    margin-bottom: 100px;
+}
+
+#about_us_banner {
+    background-color: aliceblue;
+}
+
+
 
 @media only screen and (max-width: 992px) {
     nav ul li {

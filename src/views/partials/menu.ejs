@@ -12,10 +12,9 @@
             </button> 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">  
                 <ul class="mb-0 ml-auto d-flex  mt-5 mt-lg-0 flex-column d-lg-block p-0  ul_menu">
-                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="#">Nosotros</a></li>
-                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="#">Como comprar</a></li>
-                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="#">Soporte</a></li>
-                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center"><a href="#">Buscar</a></li>
+                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="/about">Nosotros</a></li>
+                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="/howtobuy">Como comprar</a></li>
+                    <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline pr-0 pr-md-2 text-center"><a href="/support">Soporte</a></li>
                     <% if(user){ %>
                         <% if(user.role !== 'superAdmin'){ %>
                             <li class="pt-4 pb-4 pt-lg-0 pb-lg-0 d-inline text-center pl-2"><a href="/user/logout">Cerrar sesión</a></li>

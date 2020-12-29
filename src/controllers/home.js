@@ -104,74 +104,33 @@ ctrl.product_searching = async(req, res)=>{
 
         allBrands=[];
         result = "";
+    }
+}
 
-        // var numers2 = [1800, 1750];
-
-
-        // for(i=0; i<numers2; i++){
-        //     var x = numers2[i] % 500;
-
-        
-        //     if(numers2[i] % 500 != 0){
-
-        //     }
-        // }
-
-        // //AGARRE TODOS LOS NUMEROS, ENCUENTRE EL NUMERO MAX Y EL MINIMO
-        // //DESPUES Y SUMELE DE A 500 DESDE EL NUMERO MENOR HASTA QUE LLEGUE AL MAXIMO
-
-
-
-        // var prices = [1580, 7894, 4798, 8795, 8795, 25487];
-
-        // var rounded_max_min_prices = [];
-
-        // var max_price = Math.max(...prices);
-        // var min_price = Math.min(...prices);
-
-        // var max_min_prices = [max_price, min_price];
-
-
-        // for(i=0; i<max_min_prices.length; i++){
-        //     if(max_min_prices[i] % 500 == 0){
-        //     }else{
-        //         var dd = Math.round(max_min_prices[i]/500)*500;
-        //         rounded_max_min_prices.push(dd);
-        //     }
-        // }
-
-        // console.log(rounded_max_min_prices);
-        // const ee = (rounded_max_min_prices[0] - rounded_max_min_prices[1]) / 500;
-        // var lowest_price = rounded_max_min_prices[1]
-        
-
-        // for(i=0; i<ee; i++){
-        //     lowest_price = lowest_price + 500;
-        //     console.log(lowest_price);
-        // }
-        
-
-        //obtener los numero smultiplos de 500
-        // var numbers = [1000, 2000, 3000, 3500, 1850, 5, 3850];
-        // var f = []
-        // for(i=0; i<numbers.length; i++){
-        //     if(numbers[i] % 500 == 0){
-        //         f.push(numbers[i])
-        //     }else{
-        //         var T = Math.ceil(numbers[i]/500)*500;
-        //         console.log(T);
-        //     }
-        // }
-        //console.log(f);
-    }    
-    
-    //consultamos el modelo para traer todas las marcas de autos 
+ctrl.about = async (req, res)=>{
+    res.render('../views/about');
 }
 
 
-// ctrl.filters = async(req, res)=>{
-//     console.log(req.body);
-// }
+ctrl.howtobuy = async (req, res)=>{
+    res.render('../views/under_construction');
+}
+
+
+ctrl.support = async (req, res)=>{
+    res.render('../views/under_construction');
+}
+
+
+ctrl.terms = async (req, res)=>{
+    res.render('../views/terms');
+}
+
+
+ctrl.privacy_politics = async(req, res)=>{
+    res.render('../views/privacy_politics');
+}
+
 
 
 

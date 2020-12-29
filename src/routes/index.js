@@ -8,6 +8,7 @@ const profile = require('../controllers/profile');
 const user_middlewares = require('../middlewares/user_middlewares');
 const messages = require('../controllers/messages');
 const passport = require('passport');
+const { stringify } = require('uuid');
 
 
 
@@ -86,11 +87,27 @@ module.exports = function(app){
 
     router.get('/deleteUser/:id', profile.Islogged, user.deleteUser);
 
+    
+    router.get('/about', home.about);
+
+    router.get('/howtobuy', home.howtobuy);
+
+    router.get('/support', home.support);
+
+    router.get('/terms', home.terms);
+
+    router.get('/privacy&politics', home.privacy_politics);
+
+
+
+
+
+
+
     router.get('/404', (req, res)=>{
         res.render('404');
-    })
+    });
 
-    //Variables globales    
     router.use((req, res, next)=>{
         res.redirect('/404')
         next();
