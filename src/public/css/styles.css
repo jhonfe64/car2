@@ -333,6 +333,25 @@ Modal messages
 }
 
 @media only screen and (max-width: 768px) {
+
+    .unactive:active{
+        background: none;
+        color: black;
+    }
+
+    .unfocus:focus {
+        background-color: none;
+    }
+
+    .unfocus:focus{
+        background-color: none;
+    }
+
+    .ul_menu {
+        height: 70vh;
+        overflow-y: scroll;
+    }
+
     .jumbo_promotion form select,.searching_btn{
         width: 100%;
         margin-bottom: 20px;
