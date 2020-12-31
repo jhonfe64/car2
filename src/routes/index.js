@@ -40,7 +40,7 @@ module.exports = function(app){
     router.post('/product/productbymodel/:model', newProduct.productsByModel);
 
     // ===> Borrando los productos subidos
-    router.get('/deleteProduct/:id', profile.Islogged, /*edit_produts.n,*/ edit_products.delete);
+    router.get('/deleteProduct/:id', profile.Islogged,  edit_products.delete);
     // ===> Esta ruta me trae todos los carros para ser editados
     router.get('/getCars', profile.Islogged,  edit_products.allproducts);
     // ===> Ruta para traer el form de actaulizar producto y colocar info en el

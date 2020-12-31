@@ -135,3 +135,8 @@ ctrl.privacy_politics = async(req, res)=>{
 
 
 module.exports = ctrl;
+
+
+
+
+

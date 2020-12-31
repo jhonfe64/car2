@@ -24,6 +24,7 @@ ctrl.delete = async (req, res) => {
 
    //En la variable item = incuentre donde el auto coincida con el id
    const item = await productInfo.findById(id);
+   console.log(item)
 
    let images_to_delete = [];
 
@@ -39,17 +40,6 @@ ctrl.delete = async (req, res) => {
                 throw err;
             }
         });
-    }
-    //A el auto que se sselecciono por id guardado en la variable itemp, busquele la propiedad .image(que son todas laas imagenes de ese carro, las ids);s
-    item_images = item.image;
-    //ahora del Modelo Image borre todas las imagenes donde los ids correspondan a los ids de la propiedad item.image
-    //encuentreme donde el id o los _ids del modelo Image coincidan con los ids que guarda item en a propiedad image
-    const deletedImages = await Image.deleteMany({ _id: { $in: item.image } });
-    //Ahora borre el carro del modelo productInfo
-    let delete_car = await productInfo.deleteOne({_id: id});
-    if(deletedImages && delete_car){
-        req.flash('message', 'El producto ha sido eliminado')
-        res.redirect('/getCars');
     }
 }
 
@@ -69,10 +59,8 @@ ctrl.saveEditProducts = async(req, res)=>{
     const id = req.params.id;
     //ids de las imagenes que se van a eliminar
     const {picture_id} = req.body;
-    console.log("imagenes que se van a eliminar", picture_id);
     //imagenes antiguas que se van a resubir
     const {existing_pictures} = req.body;
-    console.log("imagenes que ya existen", existing_pictures);
     //imagenes nuevas a subir
     console.log(req.files);
 

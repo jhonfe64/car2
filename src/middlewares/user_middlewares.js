@@ -68,3 +68,27 @@ ctrl.validateEmail = async (req, res, next)=>{
 
 
 module.exports = ctrl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
