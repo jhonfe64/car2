@@ -43,7 +43,7 @@ type on vsc console => cd car2 and cd src to get into the right folder
 type nodemon index to run the server
 
 
-### Type on your browser http://localhost:3000 to visualize the project
+### Type on your browser http://localhost:3000 to visualize the project.
 
 
 ### Use the following information to try the project
