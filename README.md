@@ -41,13 +41,13 @@ type on vsc console => cd car2 and cd src to get into the right folder
 type nodemon index to run the server
 
 
-### Use the following INFORMATION to try the project
+### Type on your browser http://localhost:3000 to visualize the project
+
+
+### Use the following information to try the project
 
 #### user: correo@correo.com
 #### password: jhon123
-
-
-### Type on your browser http://localhost:3000 to visualize the project
 
 
 
