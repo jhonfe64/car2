@@ -11,8 +11,10 @@ This web aplication build in nodejs express and mongodb for selling second hand 
 2. express.js
 3. js
 4. bootstrap 4
-5. ejs
-6. mongodb
+5. Html5
+6. Css3
+7. ejs
+8. mongodb
 
 ### Includes the following node packages
 
