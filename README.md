@@ -46,11 +46,6 @@ type nodemon index to run the server
 ### Type on your browser http://localhost:3000 to visualize the project.
 
 
-### Use the following information to try the project
-
-#### user: correo@correo.com
-#### password: jhon123
-
 
 
 ![](https://github.com/jhonfe64/car2/blob/master/c21.jpg?raw=true)
